@@ -1,0 +1,5 @@
+{
+  "variants": {
+    "": { "model": "essencefoundry:block/skeleton_essence_block" }
+  }
+}

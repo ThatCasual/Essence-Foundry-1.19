@@ -1,9 +1,9 @@
 {
   "schemaVersion": 1,
-  "id": "tutorialmod",
-  "version": "${version}",
+  "id": "essencefoundry",
+  "version": "0.0.2-1.19",
 
-  "name": "Tutorial Mod",
+  "name": "Essence Foundry",
   "description": "This is an example description! Tell everyone what your mod is about!",
   "authors": [
     "ThatCasual"
@@ -19,14 +19,14 @@
   "environment": "*",
   "entrypoints": {
     "main": [
-      "net.thatcasual.tutorialmod.TutorialMod"
+      "net.thatcasual.essencefoundry.EssenceFoundryMod"
     ],
     "client": [
-      "net.thatcasual.tutorialmod.TutorialModClient"
+      "net.thatcasual.essencefoundry.EssenceFoundryModClient"
     ]
   },
   "mixins": [
-    "tutorialmod.mixins.json"
+    "essencefoundry.mixins.json"
   ],
 
   "depends": {

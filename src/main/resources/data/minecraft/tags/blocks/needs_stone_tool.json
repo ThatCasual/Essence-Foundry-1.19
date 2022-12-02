@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "essencefoundry:skeleton_essence_block",
+    "essencefoundry:zombie_essence_block"
+  ]
+}
