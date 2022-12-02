@@ -1,0 +1,15 @@
+Tier system for essences?
+    Common
+    Uncommon
+    Rare
+    Epic
+    Legendary
+    Boss
+
+Higher tiers are longer burn time as fuel.
+
+Player Essence for crafting death totems?
+Player Essence for chunk loader?
+
+Crying obsidian -> drained obsidian ->
+obsidian rods -> obsidian cage pieces -> spawner.
