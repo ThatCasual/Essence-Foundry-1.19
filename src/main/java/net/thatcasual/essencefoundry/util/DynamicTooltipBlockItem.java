@@ -17,13 +17,13 @@ import java.util.List;
 
 public class DynamicTooltipBlockItem extends BlockItem {
 
-    public DynamicTooltip fulltip;
+    private DynamicTooltip dynamic_tooltip;
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 
         if(Screen.hasShiftDown()){
-            List<MutableText> text = fulltip.getEntries();
+            List<MutableText> text = dynamic_tooltip.getEntries();
             for (int i = 0; i < text.size(); i++){
                 tooltip.add(text.get(i));
             }
@@ -36,6 +36,6 @@ public class DynamicTooltipBlockItem extends BlockItem {
     }
     public DynamicTooltipBlockItem(Block block, Settings settings, DynamicTooltip dynamictooltip) {
         super(block, settings);
-        fulltip = dynamictooltip;
+        dynamic_tooltip = dynamictooltip;
     }
 }

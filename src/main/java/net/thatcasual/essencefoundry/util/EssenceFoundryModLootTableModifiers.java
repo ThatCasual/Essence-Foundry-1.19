@@ -28,7 +28,7 @@ public class EssenceFoundryModLootTableModifiers {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1)) //Drops 1 essence.
                         .conditionally(RandomChanceLootCondition.builder(.05f)) //5% drop chance.
-                        .with(ItemEntry.builder(ModItems.SKELETON_ESSENCE));
+                        .with(ItemEntry.builder(ModItems.pre_SKELETON_ESSENCE));
                 tableBuilder.pool(poolBuilder.build());
             }
 
@@ -36,7 +36,7 @@ public class EssenceFoundryModLootTableModifiers {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1)) //Drops 1 essence.
                         .conditionally(RandomChanceLootCondition.builder(.1f)) //10% drop chance.
-                        .with(ItemEntry.builder(ModItems.SKELETON_ESSENCE));
+                        .with(ItemEntry.builder(ModItems.pre_SKELETON_ESSENCE));
                 tableBuilder.pool(poolBuilder.build());
             }
 
@@ -44,7 +44,7 @@ public class EssenceFoundryModLootTableModifiers {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1)) //Drops 1 essence.
                         .conditionally(RandomChanceLootCondition.builder(.05f)) //5% drop chance.
-                        .with(ItemEntry.builder(ModItems.ZOMBIE_ESSENCE));
+                        .with(ItemEntry.builder(ModItems.pre_SKELETON_ESSENCE));
                 tableBuilder.pool(poolBuilder.build());
             }
 
@@ -52,7 +52,7 @@ public class EssenceFoundryModLootTableModifiers {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1)) //Drops 1 essence.
                         .conditionally(RandomChanceLootCondition.builder(.1f)) //10% drop chance.
-                        .with(ItemEntry.builder(ModItems.ZOMBIE_ESSENCE));
+                        .with(ItemEntry.builder(ModItems.pre_ZOMBIE_ESSENCE));
                 tableBuilder.pool(poolBuilder.build());
             }
 
@@ -60,7 +60,7 @@ public class EssenceFoundryModLootTableModifiers {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1)) //Drops 1 essence.
                         .conditionally(RandomChanceLootCondition.builder(.05f)) //5% drop chance.
-                        .with(ItemEntry.builder(ModItems.CHICKEN_ESSENCE));
+                        .with(ItemEntry.builder(ModItems.pre_CHICKEN_ESSENCE));
                 tableBuilder.pool(poolBuilder.build());
             }
 

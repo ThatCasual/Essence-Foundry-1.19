@@ -8,13 +8,13 @@ import java.util.List;
 
 public class DynamicTooltip {
 
-    public ArrayList<MutableText> fulltip = new ArrayList<MutableText>();
+    private ArrayList<MutableText> dynamic_tooltip = new ArrayList<MutableText>();
 
     public DynamicTooltip(){}
 
     //Constructor for a single line of text on item registration.
     public DynamicTooltip(MutableText text) {
-            fulltip.add(text);
+            dynamic_tooltip.add(text);
     }
 
     //Constructor for multiple lines of text on item registration.
@@ -22,7 +22,7 @@ public class DynamicTooltip {
         if(textlist != null) {
             for (int i = 0; i < textlist.size(); i++) {
                 if (textlist.get(i) != null) {
-                    fulltip.add(textlist.get(i));
+                    dynamic_tooltip.add(textlist.get(i));
                 }
             }
         }
@@ -30,20 +30,20 @@ public class DynamicTooltip {
 
     //Adds text to the end of the tooltip.
     public void addToTooltip(MutableText text) {
-        fulltip.add(text);
+        dynamic_tooltip.add(text);
     }
 
     //Adds a line of text to a specific line.
     public void addToTooltipAt(int location, MutableText text) {
-        fulltip.add(location, text);
+        dynamic_tooltip.add(location, text);
     }
 
     //Removes first instance of the specified text.
     public boolean removeFromTooltip(MutableText text) {
         boolean flag = false;
-        for(int i = 0; i < fulltip.size(); i++){
-            if (text == fulltip.get(i)){
-                fulltip.remove(i);
+        for(int i = 0; i < dynamic_tooltip.size(); i++){
+            if (text == dynamic_tooltip.get(i)){
+                dynamic_tooltip.remove(i);
                 flag = true;
                 break;
             }
@@ -54,9 +54,9 @@ public class DynamicTooltip {
     //Removes all instances of the specified text.
     public int removeAllFromTooltip(MutableText text) {
         int count = 0;
-        for(int i = 0; i < fulltip.size(); i++){
-            if (text == fulltip.get(i)){
-                fulltip.remove(i);
+        for(int i = 0; i < dynamic_tooltip.size(); i++){
+            if (text == dynamic_tooltip.get(i)){
+                dynamic_tooltip.remove(i);
                 count += 1;
                 i--;
             }
@@ -66,7 +66,7 @@ public class DynamicTooltip {
 
     //Returns the tooltip entries as a list.
     public List<MutableText> getEntries() {
-        return fulltip;
+        return dynamic_tooltip;
     }
 
 }
