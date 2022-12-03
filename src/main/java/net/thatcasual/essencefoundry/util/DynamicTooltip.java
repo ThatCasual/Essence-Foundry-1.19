@@ -8,17 +8,17 @@ import java.util.List;
 
 public class DynamicTooltip {
 
-    public List<MutableText> fulltip = new ArrayList<MutableText>();
+    public ArrayList<MutableText> fulltip = new ArrayList<MutableText>();
+
+    public DynamicTooltip(){}
 
     //Constructor for a single line of text on item registration.
-    public DynamicTooltip(@Nullable MutableText text) {
-        if (text != null){
+    public DynamicTooltip(MutableText text) {
             fulltip.add(text);
-        }
     }
 
     //Constructor for multiple lines of text on item registration.
-    public DynamicTooltip(@Nullable List<MutableText> textlist) {
+    public DynamicTooltip(List<MutableText> textlist) {
         if(textlist != null) {
             for (int i = 0; i < textlist.size(); i++) {
                 if (textlist.get(i) != null) {
@@ -58,6 +58,7 @@ public class DynamicTooltip {
             if (text == fulltip.get(i)){
                 fulltip.remove(i);
                 count += 1;
+                i--;
             }
         }
         return count;

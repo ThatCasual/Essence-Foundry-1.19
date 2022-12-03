@@ -1,6 +1,0 @@
-{
-  "parent": "block/cube_all",
-  "textures": {
-    "all": "essencefoundry:block/skeleton_essence_block"
-  }
-}

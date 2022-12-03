@@ -1,0 +1,101 @@
++White -- Basic Tier
+	skeleton
+	chicken
+	ghast
+	polar bear
+	wolf
+	sheep
+	skeleton horse
+	snow golem (1.19.3)
+
++Magenta -- Basic Tier
+	shulk
+	wandering trader
+
++Yellow -- Basic Tier
+	bee
+	llama
+	trader llama
+	fox
+	ocelot
+	pufferfish
+	tropical fish
+
++Lime -- Basic Tier
+	creeper
+	slime
+
++Pink -- Basic Tier
+	axolotl
+	pig
+
++Light Gray -- Basic Tier
+	bat
+	cat
+	dolphin
+	goat
+	panda
+	stray
+	rabbit
+	salmon
+	squid
+
++Brown -- Basic Tier
+	witch
+	cod
+	cow
+	husk
+	donkey
+	horse
+	mule
+	tadpole
+
++Green -- Basic Tier
+	zombie
+	zombie villager
+	parrot
+	turtle
+
++Cyan -- Basic Tier
+	cave spider
+	glow squid
+
+
++Purple -- Encounter Tier
+	phantom
+	endermite
+	
++Gray -- Encounter Tier
+	silverfish
+	pillager/vindicator/evoker
+	vex
+	ravager
+	spider
+	iron golem (1.19.3)
+
++Light Blue -- Encounter Tier
+	allay
+	guardian
+
++Blue -- Encounter Tier
+	drowned
+	elder guardian
+
++Orange -- Nether Tier
+	blaze
+	hoglin
+	piglin/piglin brute
+	zoglin
+	zombified piglin
+
++Red -- Nether Tier
+	magma cube
+	mooshroom
+	strider
+
++Black -- End Tier
+	enderman
+	ender dragon (1.19.3)
+	wither (1.19.3)
+	wither skeleton
+	warden

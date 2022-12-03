@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "essencefoundry:skeleton_essence_block"
+          "name": "essencefoundry:lime_essence_block"
         }
       ]
     }

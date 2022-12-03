@@ -1,26 +1,23 @@
-package net.thatcasual.essencefoundry.item.custom;
+package net.thatcasual.essencefoundry.util;
+
+import net.minecraft.block.Block;
 
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.item.Item;
+import net.minecraft.item.BlockItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.world.World;
-import net.thatcasual.essencefoundry.util.DynamicTooltip;
 import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-public abstract class EssenceItem extends Item {
+
+public class DynamicTooltipBlockItem extends BlockItem {
 
     public DynamicTooltip fulltip;
-
-    public EssenceItem(Settings settings, DynamicTooltip dynamictooltip) {
-        super(settings);
-        fulltip = dynamictooltip;
-    }
 
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
@@ -36,5 +33,9 @@ public abstract class EssenceItem extends Item {
         }
 
         super.appendTooltip(stack, world, tooltip, context);
+    }
+    public DynamicTooltipBlockItem(Block block, Settings settings, DynamicTooltip dynamictooltip) {
+        super(block, settings);
+        fulltip = dynamictooltip;
     }
 }

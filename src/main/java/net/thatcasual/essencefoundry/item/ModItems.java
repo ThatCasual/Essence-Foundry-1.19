@@ -1,24 +1,16 @@
 package net.thatcasual.essencefoundry.item;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
-import net.minecraft.world.World;
 import net.thatcasual.essencefoundry.EssenceFoundryMod;
 import net.thatcasual.essencefoundry.item.custom.EssenceItem;
 import net.thatcasual.essencefoundry.item.custom.LandEssenceItem;
 import net.thatcasual.essencefoundry.util.DynamicTooltip;
 import org.jetbrains.annotations.Nullable;
-
-import javax.swing.*;
-import java.util.List;
 
 public class ModItems extends EssenceItem{
 
@@ -33,7 +25,7 @@ public class ModItems extends EssenceItem{
                             .formatted(Formatting.LIGHT_PURPLE))));
 
     public ModItems(Settings settings, @Nullable DynamicTooltip dynamictooltip) {
-        super(settings, dynamictooltip);
+        super(settings, null);
     }
 
     private static Item registerItem(String name, Item item){

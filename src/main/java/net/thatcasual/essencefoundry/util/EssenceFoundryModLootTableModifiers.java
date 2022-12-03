@@ -1,13 +1,10 @@
 package net.thatcasual.essencefoundry.util;
 
-import net.fabricmc.fabric.api.loot.v2.FabricLootPoolBuilder;
 import net.fabricmc.fabric.api.loot.v2.LootTableEvents;
 import net.minecraft.loot.LootPool;
 import net.minecraft.loot.condition.RandomChanceLootCondition;
 import net.minecraft.loot.entry.ItemEntry;
 import net.minecraft.loot.provider.number.ConstantLootNumberProvider;
-import net.minecraft.loot.provider.number.LootNumberProvider;
-import net.minecraft.predicate.entity.EntityPredicate;
 import net.minecraft.util.Identifier;
 import net.thatcasual.essencefoundry.item.ModItems;
 

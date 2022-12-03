@@ -6,7 +6,7 @@
       "entries": [
         {
           "type": "minecraft:item",
-          "name": "essencefoundry:zombie_essence_block"
+          "name": "essencefoundry:white_essence_block"
         }
       ]
     }
