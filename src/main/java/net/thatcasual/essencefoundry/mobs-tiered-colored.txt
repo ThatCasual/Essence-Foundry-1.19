@@ -1,6 +1,6 @@
 +White -- Basic Tier
-	skeleton
-	chicken
+	+skeleton
+	+chicken
 	ghast
 	polar bear
 	wolf

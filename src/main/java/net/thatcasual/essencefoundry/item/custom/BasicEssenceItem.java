@@ -4,10 +4,10 @@ import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.thatcasual.essencefoundry.util.DynamicTooltip;
 
-public class LandEssenceItem extends EssenceItem{
+public class BasicEssenceItem extends EssenceItem{
 
-    public LandEssenceItem(Settings settings, DynamicTooltip dynamictooltip) {
+    public BasicEssenceItem(Settings settings, DynamicTooltip dynamictooltip) {
         super(settings, dynamictooltip);
-        this.fulltip.addToTooltip(Text.translatable("Land Tier").formatted(Formatting.GRAY));
+        this.fulltip.addToTooltip(Text.translatable("Basic Tier").formatted(Formatting.GRAY));
     }
 }

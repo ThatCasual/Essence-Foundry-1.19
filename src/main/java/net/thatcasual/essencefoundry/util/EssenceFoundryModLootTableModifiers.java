@@ -18,6 +18,8 @@ public class EssenceFoundryModLootTableModifiers {
             = new Identifier("minecraft","entities/zombie_villager");
     private static final Identifier STRAY_ID
             = new Identifier("minecraft","entities/stray");
+    private static  final Identifier CHICKEN_ID
+            =new Identifier("minecraft", "entities/chicken");
 
     public static void  modifyLootTables(){
         LootTableEvents.MODIFY.register((resourceManager, lootManager, id, tableBuilder, source) -> {
@@ -51,6 +53,14 @@ public class EssenceFoundryModLootTableModifiers {
                         .rolls(ConstantLootNumberProvider.create(1)) //Drops 1 essence.
                         .conditionally(RandomChanceLootCondition.builder(.1f)) //10% drop chance.
                         .with(ItemEntry.builder(ModItems.ZOMBIE_ESSENCE));
+                tableBuilder.pool(poolBuilder.build());
+            }
+
+            if(CHICKEN_ID.equals(id)) {
+                LootPool.Builder poolBuilder = LootPool.builder()
+                        .rolls(ConstantLootNumberProvider.create(1)) //Drops 1 essence.
+                        .conditionally(RandomChanceLootCondition.builder(.05f)) //5% drop chance.
+                        .with(ItemEntry.builder(ModItems.CHICKEN_ESSENCE));
                 tableBuilder.pool(poolBuilder.build());
             }
 
