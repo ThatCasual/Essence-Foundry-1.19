@@ -1,29 +1,23 @@
 package net.thatcasual.essencefoundry.block.custom;
 
-
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
+import net.minecraft.block.Material;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.sound.BlockSoundGroup;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.thatcasual.essencefoundry.EssenceFoundryMod;
 import net.thatcasual.essencefoundry.item.ModItemGroups;
 import net.thatcasual.essencefoundry.util.DynamicTooltip;
+import net.thatcasual.essencefoundry.util.DynamicTooltipBlock;
 
-public class EssenceBlock extends Block {
+public class EssenceBlock extends DynamicTooltipBlock {
 
     private String name;
     private int tier_id;
     private ItemGroup tab;
-    private DynamicTooltip dynamic_tooltip;
 
-    public DynamicTooltip getDynamicTooltip(){
-        return dynamic_tooltip;
-    }
-
-    public void setDynamicTooltip(DynamicTooltip dynamic_tooltip){
-        this.dynamic_tooltip = dynamic_tooltip;
-    }
 
     public String getBlockName(){
         return name;
@@ -34,15 +28,17 @@ public class EssenceBlock extends Block {
     }
 
     private EssenceBlock(Block.Settings settings, String name, int tier_id, ItemGroup tab, DynamicTooltip dynamic_tooltip) {
-        super(settings);
+        super(settings, dynamic_tooltip);
         this.name = name;
         this.tier_id = tier_id;
         this.tab = tab;
-        this.dynamic_tooltip = dynamic_tooltip;
     }
 
     public static class EssenceBlockBuilder{
-        private Block.Settings settings;
+        private Block.Settings settings = FabricBlockSettings
+                .of(Material.AMETHYST)
+                .sounds(BlockSoundGroup.AMETHYST_BLOCK)
+                .strength(2f).requiresTool();
         private String name = "unnamed";
         private int tier_id = EssenceFoundryMod.BASIC_TIER;
         private ItemGroup tab = ModItemGroups.ESSENCE_FOUNDRY;

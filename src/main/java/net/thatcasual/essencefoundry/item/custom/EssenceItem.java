@@ -1,43 +1,30 @@
 package net.thatcasual.essencefoundry.item.custom;
 
-import net.minecraft.client.gui.screen.Screen;
-import net.minecraft.client.item.TooltipContext;
-import net.minecraft.item.Item;
-import net.minecraft.item.ItemStack;
-import net.minecraft.text.MutableText;
+import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.item.ItemGroup;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
-import net.minecraft.world.World;
 import net.thatcasual.essencefoundry.EssenceFoundryMod;
+import net.thatcasual.essencefoundry.item.ModItemGroups;
 import net.thatcasual.essencefoundry.util.DynamicTooltip;
-import org.jetbrains.annotations.Nullable;
+import net.thatcasual.essencefoundry.util.DynamicTooltipItem;
 
-import java.util.List;
+public class EssenceItem extends DynamicTooltipItem {
 
-public class EssenceItem extends Item {
-
-    private Settings settings;
     private String name;
     private int tier_id;
-    private DynamicTooltip dynamic_tooltip;
+    private ItemGroup tab;
 
     public String getItemName(){
         return this.name;
     }
 
-    public DynamicTooltip getDynamicTooltip(){
-        return dynamic_tooltip;
-    }
 
-    public void setDynamicTooltip(DynamicTooltip dynamic_tooltip){
-        this.dynamic_tooltip = dynamic_tooltip;
-    }
-
-    private EssenceItem(Settings settings, int tier_id, String name, DynamicTooltip dynamic_tooltip) {
-        super(settings);
+    private EssenceItem(Settings settings, int tier_id, String name, ItemGroup tab, DynamicTooltip dynamic_tooltip) {
+        super(settings, dynamic_tooltip);
         this.name = name;
         this.tier_id = tier_id;
-        this.dynamic_tooltip =dynamic_tooltip;
+        this.tab = tab;
     }
 
 
@@ -46,6 +33,7 @@ public class EssenceItem extends Item {
         private Settings settings;
         private String name = "unnamed";
         private int tier_id = EssenceFoundryMod.BASIC_TIER;
+        private ItemGroup tab = ModItemGroups.ESSENCE_FOUNDRY;
         private DynamicTooltip dynamic_tooltip = new DynamicTooltip();
 
         public EssenceItemBuilder settings(Settings settings){
@@ -60,6 +48,11 @@ public class EssenceItem extends Item {
 
         public EssenceItemBuilder tier_id(int tier_id) {
             this.tier_id = tier_id;
+            return this;
+        }
+
+        public EssenceItemBuilder tab(ItemGroup tab){
+            this.tab = tab;
             return this;
         }
 
@@ -85,23 +78,10 @@ public class EssenceItem extends Item {
                 default:
                     break;
             }
-            return new EssenceItem(settings, tier_id, name, dynamic_tooltip);
-        }
-    }
-
-    @Override
-    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-
-        if(Screen.hasShiftDown()){
-            List<MutableText> text = dynamic_tooltip.getEntries();
-            for (int i = 0; i < text.size(); i++){
-                tooltip.add(text.get(i));
+            if(this.settings == null){
+                this.settings = new FabricItemSettings().group(this.tab);
             }
-
-        } else {
-            tooltip.add(Text.translatable("Hold Shift for info.").formatted(Formatting.DARK_PURPLE));
+            return new EssenceItem(settings, tier_id, name, tab, dynamic_tooltip);
         }
-
-        super.appendTooltip(stack, world, tooltip, context);
     }
 }

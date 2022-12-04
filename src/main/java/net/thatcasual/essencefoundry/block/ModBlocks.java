@@ -18,18 +18,10 @@ public class ModBlocks extends Block {
     //create block w/ tooltip
     public static EssenceBlock pre_LIME_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
             .name("lime_essence_block")
-            .settings(FabricBlockSettings
-                    .of(Material.AMETHYST)
-                    .sounds(BlockSoundGroup.AMETHYST_BLOCK)
-                    .strength(2f).requiresTool())
             .build();
 
     public static EssenceBlock pre_WHITE_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
             .name("white_essence_block")
-            .settings(FabricBlockSettings
-                    .of(Material.AMETHYST)
-                    .sounds(BlockSoundGroup.AMETHYST_BLOCK)
-                    .strength(2f).requiresTool())
             .build();
 
 

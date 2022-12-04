@@ -1,6 +1,5 @@
 package net.thatcasual.essencefoundry.item;
 
-import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
 import net.minecraft.item.Item;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
@@ -14,7 +13,6 @@ import net.thatcasual.essencefoundry.util.DynamicTooltip;
 public class ModItems extends Item{
 
     public static EssenceItem pre_SKELETON_ESSENCE = new EssenceItem.EssenceItemBuilder()
-            .settings(new FabricItemSettings().group(ModItemGroups.ESSENCE_FOUNDRY))
             .name("skeleton_essence")
             .dynamic_tooltip(new DynamicTooltip(Text.translatable("Has a 5% chance to drop from regular skeletons.")
                     .formatted(Formatting.LIGHT_PURPLE)))
@@ -22,7 +20,6 @@ public class ModItems extends Item{
 
 
     public static EssenceItem pre_ZOMBIE_ESSENCE = new EssenceItem.EssenceItemBuilder()
-                .settings(new FabricItemSettings().group(ModItemGroups.ESSENCE_FOUNDRY))
                 .name("zombie_essence")
                 .dynamic_tooltip(new DynamicTooltip(Text.translatable("Has a 5% chance to drop from regular zombies.")
                         .formatted(Formatting.LIGHT_PURPLE)))
@@ -30,7 +27,6 @@ public class ModItems extends Item{
 
 
     public static EssenceItem pre_CHICKEN_ESSENCE = new EssenceItem.EssenceItemBuilder()
-                .settings(new FabricItemSettings().group(ModItemGroups.ESSENCE_FOUNDRY))
                 .name("chicken_essence")
                 .dynamic_tooltip(new DynamicTooltip(Text.translatable("Has a 5% chance to drop from regular chicken.")
                         .formatted(Formatting.LIGHT_PURPLE)))
