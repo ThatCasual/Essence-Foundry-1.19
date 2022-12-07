@@ -24,6 +24,10 @@ public class DynamicTooltipItem extends Item {
         this.dynamic_tooltip = dynamic_tooltip;
     }
 
+    public void addToDynamicTooltip(MutableText text){
+        this.dynamic_tooltip.addToTooltip(text);
+    }
+
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
 

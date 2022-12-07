@@ -34,7 +34,8 @@ public class EssenceItem extends DynamicTooltipItem {
         private String name = "unnamed";
         private int tier_id = EssenceFoundryMod.BASIC_TIER;
         private ItemGroup tab = ModItemGroups.ESSENCE_FOUNDRY;
-        private DynamicTooltip dynamic_tooltip = new DynamicTooltip();
+        private DynamicTooltip dynamic_tooltip = new DynamicTooltip(Text.translatable("Has a 5% chance to drop from its respective mob.")
+                .formatted(Formatting.LIGHT_PURPLE));
 
         public EssenceItemBuilder settings(Settings settings){
             this.settings = settings;

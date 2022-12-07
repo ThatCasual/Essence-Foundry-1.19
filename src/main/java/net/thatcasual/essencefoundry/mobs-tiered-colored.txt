@@ -1,101 +1,104 @@
 +White -- Basic Tier
 	+skeleton
 	+chicken
-	ghast
-	polar bear
-	wolf
-	sheep
-	skeleton horse
+	+ghast
+	+polar bear
+	+wolf
+	+sheep
+	+skeleton horse
 	snow golem (1.19.3)
 
 +Magenta -- Basic Tier
-	shulk
-	wandering trader
+	+shulk
+	+wandering trader
 
 +Yellow -- Basic Tier
-	bee
-	llama
-	trader llama
-	fox
-	ocelot
-	pufferfish
-	tropical fish
+	+bee
+	+llama
+	+trader llama
+	+fox
+	+ocelot
+	+pufferfish
+	+tropical fish
 
 +Lime -- Basic Tier
-	creeper
-	slime
+	+creeper
+	+slime
 
 +Pink -- Basic Tier
-	axolotl
-	pig
+	+axolotl
+	+pig
 
 +Light Gray -- Basic Tier
-	bat
-	cat
-	dolphin
-	goat
-	panda
-	stray
-	rabbit
-	salmon
-	squid
+	+bat
+	+cat
+	+dolphin
+	+goat
+	+panda
+	+stray
+	+rabbit
+	+salmon
+	+squid
 
 +Brown -- Basic Tier
-	witch
-	cod
-	cow
-	husk
-	donkey
-	horse
-	mule
-	tadpole
+	+witch
+	+cod
+	+cow
+	+husk
+	+donkey
+	+horse
+	+mule
+	+tadpole
 
 +Green -- Basic Tier
-	zombie
-	zombie villager
-	parrot
-	turtle
+	+zombie
+	+zombie villager
+	+parrot
+	+turtle
 
 +Cyan -- Basic Tier
-	cave spider
-	glow squid
+	+cave spider
+	+glow squid
 
 
 +Purple -- Encounter Tier
-	phantom
-	endermite
+	+phantom
+	+endermite
 	
 +Gray -- Encounter Tier
-	silverfish
-	pillager/vindicator/evoker
-	vex
-	ravager
-	spider
+	+silverfish
+	+pillager
+	+vindicator
+	+evoker
+	+vex
+	+ravager
+	+spider
 	iron golem (1.19.3)
 
 +Light Blue -- Encounter Tier
-	allay
-	guardian
+	+allay
+	+guardian
 
 +Blue -- Encounter Tier
-	drowned
-	elder guardian
+	+drowned
+	+elder guardian
 
 +Orange -- Nether Tier
-	blaze
-	hoglin
-	piglin/piglin brute
-	zoglin
-	zombified piglin
+	+blaze
+	+hoglin
+	+piglin
+	+piglin brute
+	+zoglin
+	+zombified piglin
 
 +Red -- Nether Tier
-	magma cube
-	mooshroom
-	strider
+	+magma cube
+	+mooshroom
+	+strider
 
 +Black -- End Tier
-	enderman
+	+enderman
 	ender dragon (1.19.3)
 	wither (1.19.3)
-	wither skeleton
-	warden
+	+wither skeleton
+	+warden
