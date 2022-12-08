@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "essencefoundry:block/tiled_yellow_essence_block"
+  }
+}

@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "essencefoundry:block/red_essence_block"
+  }
+}

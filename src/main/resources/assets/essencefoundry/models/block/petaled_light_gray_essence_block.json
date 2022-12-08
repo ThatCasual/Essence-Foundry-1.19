@@ -1,0 +1,6 @@
+{
+  "parent": "block/cube_all",
+  "textures": {
+    "all": "essencefoundry:block/petaled_light_gray_essence_block"
+  }
+}

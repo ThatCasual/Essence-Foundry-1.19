@@ -320,7 +320,7 @@ public class ModItems extends Item{
     }
 
     public static void registerModItems(){
-        EssenceFoundryMod.LOGGER.debug("Registering ModItems for " + EssenceFoundryMod.MOD_ID);
+        EssenceFoundryMod.LOGGER.debug("Registering ModItems for " + EssenceFoundryMod.MOD_ID + "...");
         final Item SKELETON_ESSENCE = registerItem(pre_SKELETON_ESSENCE);
         final Item CHICKEN_ESSENCE = registerItem(pre_CHICKEN_ESSENCE);
         final Item GHAST_ESSENCE = registerItem(pre_GHAST_ESSENCE);
@@ -389,6 +389,7 @@ public class ModItems extends Item{
         final Item ENDERMAN_ESSENCE = registerItem(pre_ENDERMAN_ESSENCE);
         final Item WITHER_SKELETON_ESSENCE = registerItem(pre_WITHER_SKELETON_ESSENCE);
         final Item WARDEN_ESSENCE = registerItem(pre_WARDEN_ESSENCE);
+        EssenceFoundryMod.LOGGER.debug("Finished registering ModItems for " + EssenceFoundryMod.MOD_ID + ".");
     }
 
 }
