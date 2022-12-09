@@ -1,0 +1,14 @@
+{
+  "replace": false,
+  "values": [
+    "essencefoundry:bat_essence",
+    "essencefoundry:cat_essence",
+    "essencefoundry:dolphin_essence",
+    "essencefoundry:goat_essence",
+    "essencefoundry:panda_essence",
+    "essencefoundry:stray_essence",
+    "essencefoundry:rabbit_essence",
+    "essencefoundry:salmon_essence",
+    "essencefoundry:squid_essence"
+  ]
+}

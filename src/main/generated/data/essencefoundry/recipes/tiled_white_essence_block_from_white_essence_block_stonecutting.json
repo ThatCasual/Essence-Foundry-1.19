@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "essencefoundry:white_essence_block"
+  },
+  "result": "essencefoundry:tiled_white_essence_block"
+}

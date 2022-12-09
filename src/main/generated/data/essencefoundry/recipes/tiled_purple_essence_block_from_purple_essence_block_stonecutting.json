@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "essencefoundry:purple_essence_block"
+  },
+  "result": "essencefoundry:tiled_purple_essence_block"
+}

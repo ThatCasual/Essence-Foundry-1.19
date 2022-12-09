@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "essencefoundry:magma_cube_essence",
+    "essencefoundry:mooshroom_essence",
+    "essencefoundry:strider_essence"
+    ]
+}

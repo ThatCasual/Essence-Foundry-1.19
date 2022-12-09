@@ -1,0 +1,34 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:petaled_yellow_essence_block_from_yellow_essence_block_stonecutting"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_yellow_essence_block": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "essencefoundry:yellow_essence_block"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_yellow_essence_block",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:petaled_yellow_essence_block_from_yellow_essence_block_stonecutting"
+    ]
+  }
+}

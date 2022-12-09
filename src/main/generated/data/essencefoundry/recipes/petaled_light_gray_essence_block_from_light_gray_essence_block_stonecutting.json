@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "essencefoundry:light_gray_essence_block"
+  },
+  "result": "essencefoundry:petaled_light_gray_essence_block"
+}

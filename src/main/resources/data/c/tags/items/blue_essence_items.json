@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "essencefoundry:drowned_essence",
+    "essencefoundry:elder_guardian_essence"
+  ]
+}

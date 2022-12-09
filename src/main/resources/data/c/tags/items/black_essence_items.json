@@ -1,0 +1,8 @@
+{
+  "replace": false,
+  "values": [
+    "essencefoundry:enderman_essence",
+    "essencefoundry:wither_skeleton_essence",
+    "essencefoundry:warden_essence"
+    ]
+}

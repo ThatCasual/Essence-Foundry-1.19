@@ -1,0 +1,13 @@
+{
+  "replace": false,
+  "values": [
+    "essencefoundry:witch_essence",
+    "essencefoundry:cod_essence",
+    "essencefoundry:cow_essence",
+    "essencefoundry:husk_essence",
+    "essencefoundry:donkey_essence",
+    "essencefoundry:horse_essence",
+    "essencefoundry:mule_essence",
+    "essencefoundry:tadpole_essence"
+  ]
+}

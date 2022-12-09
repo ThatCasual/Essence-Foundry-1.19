@@ -5,9 +5,9 @@
     "##"
   ],
   "key": {
-    "#": {"tag": "c:white_essence_items"}
+    "#": {"tag": "c:gray_essence_items"}
   },
   "result": {
-    "item": "essencefoundry:white_essence_block"
+    "item": "essencefoundry:gray_essence_block"
   }
 }

@@ -40,7 +40,7 @@
 	+salmon
 	+squid
 
-Brown -- Basic Tier
++Brown -- Basic Tier
 	+witch
 	+cod
 	+cow
@@ -50,22 +50,22 @@ Brown -- Basic Tier
 	+mule
 	+tadpole
 
-Green -- Basic Tier
++Green -- Basic Tier
 	+zombie
 	+zombie villager
 	+parrot
 	+turtle
 
-Cyan -- Basic Tier
++Cyan -- Basic Tier
 	+cave spider
 	+glow squid
 
 
-Purple -- Encounter Tier
++Purple -- Encounter Tier
 	+phantom
 	+endermite
 	
-Gray -- Encounter Tier
++Gray -- Encounter Tier
 	+silverfish
 	+pillager
 	+vindicator
@@ -79,7 +79,7 @@ Gray -- Encounter Tier
 	+allay
 	+guardian
 
-Blue -- Encounter Tier
++Blue -- Encounter Tier
 	+drowned
 	+elder guardian
 
@@ -91,12 +91,12 @@ Blue -- Encounter Tier
 	+zoglin
 	+zombified piglin
 
-Red -- Nether Tier
++Red -- Nether Tier
 	+magma cube
 	+mooshroom
 	+strider
 
-Black -- End Tier
++Black -- End Tier
 	+enderman
 	ender dragon (1.19.3)
 	wither (1.19.3)

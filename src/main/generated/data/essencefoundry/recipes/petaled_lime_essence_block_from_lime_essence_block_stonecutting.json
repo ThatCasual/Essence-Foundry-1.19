@@ -1,0 +1,8 @@
+{
+  "type": "minecraft:stonecutting",
+  "count": 1,
+  "ingredient": {
+    "item": "essencefoundry:lime_essence_block"
+  },
+  "result": "essencefoundry:petaled_lime_essence_block"
+}

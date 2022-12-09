@@ -1,0 +1,9 @@
+{
+  "replace": false,
+  "values": [
+    "essencefoundry:zombie_essence",
+    "essencefoundry:zombie_villager_essence",
+    "essencefoundry:parrot_essence",
+    "essencefoundry:turtle_essence"
+    ]
+}

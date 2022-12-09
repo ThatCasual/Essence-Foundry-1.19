@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "essencefoundry:bee_essence",
+    "essencefoundry:llama_essence",
+    "essencefoundry:trader_llama_essence",
+    "essencefoundry:fox_essence",
+    "essencefoundry:ocelot_essence",
+    "essencefoundry:pufferfish_essence",
+    "essencefoundry:tropical_fish_essence"
+  ]
+}

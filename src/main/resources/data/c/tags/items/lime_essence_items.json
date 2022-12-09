@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "essencefoundry:creeper_essence",
+    "essencefoundry:slime_essence"
+  ]
+}

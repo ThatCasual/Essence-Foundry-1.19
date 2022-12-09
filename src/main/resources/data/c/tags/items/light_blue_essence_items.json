@@ -1,0 +1,7 @@
+{
+  "replace": false,
+  "values": [
+    "essencefoundry:allay_essence",
+    "essencefoundry:guardian_essence"
+  ]
+}

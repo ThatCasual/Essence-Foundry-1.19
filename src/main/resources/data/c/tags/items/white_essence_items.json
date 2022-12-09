@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "essencefoundry:skeleton_essence",
+    "essencefoundry:chicken_essence",
+    "essencefoundry:ghast_essence",
+    "essencefoundry:polar_bear_essence",
+    "essencefoundry:wolf_essence",
+    "essencefoundry:sheep_essence",
+    "essencefoundry:skeleton_horse_essence"
+  ]
+}

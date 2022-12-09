@@ -5,7 +5,7 @@
     "##"
   ],
   "key": {
-    "#": {"item": "essencefoundry:zombie_essence"}
+    "#": {"tag": "c:lime_essence_items"}
   },
   "result": {
     "item": "essencefoundry:lime_essence_block"

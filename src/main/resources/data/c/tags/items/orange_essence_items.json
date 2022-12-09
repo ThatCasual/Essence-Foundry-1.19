@@ -1,0 +1,11 @@
+{
+  "replace": false,
+  "values": [
+    "essencefoundry:blaze_essence",
+    "essencefoundry:hoglin_essence",
+    "essencefoundry:piglin_essence",
+    "essencefoundry:piglin_brute_bear_essence",
+    "essencefoundry:zoglin_essence",
+    "essencefoundry:zombified_piglin_essence"
+  ]
+}

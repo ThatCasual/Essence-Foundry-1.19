@@ -5,9 +5,9 @@
     "##"
   ],
   "key": {
-    "#": {"tag": "c:white_essence_items"}
+    "#": {"tag": "c:cyan_essence_items"}
   },
   "result": {
-    "item": "essencefoundry:white_essence_block"
+    "item": "essencefoundry:cyan_essence_block"
   }
 }

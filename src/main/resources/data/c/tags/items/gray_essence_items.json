@@ -1,0 +1,12 @@
+{
+  "replace": false,
+  "values": [
+    "essencefoundry:silverfish_essence",
+    "essencefoundry:pillager_essence",
+    "essencefoundry:vindicator_essence",
+    "essencefoundry:evoker_essence",
+    "essencefoundry:vex_essence",
+    "essencefoundry:ravager_essence",
+    "essencefoundry:spider_horse_essence"
+  ]
+}
