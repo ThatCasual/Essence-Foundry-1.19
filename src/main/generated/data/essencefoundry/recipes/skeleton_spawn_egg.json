@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "E": {
+      "item": "essencefoundry:skeleton_essence"
+    },
+    "x": {
+      "item": "minecraft:egg"
+    }
+  },
+  "pattern": [
+    "ExE",
+    "xEx",
+    "ExE"
+  ],
+  "result": {
+    "item": "minecraft:skeleton_spawn_egg"
+  }
+}

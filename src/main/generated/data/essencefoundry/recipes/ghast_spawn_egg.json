@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "E": {
+      "item": "essencefoundry:ghast_essence"
+    },
+    "x": {
+      "item": "minecraft:egg"
+    }
+  },
+  "pattern": [
+    "ExE",
+    "xEx",
+    "ExE"
+  ],
+  "result": {
+    "item": "minecraft:ghast_spawn_egg"
+  }
+}

@@ -210,7 +210,7 @@ public class EssenceFoundryModLootTableModifiers {
                 LootPool.Builder poolBuilder = LootPool.builder()
                         .rolls(ConstantLootNumberProvider.create(1)) //Drops 1 essence.
                         .conditionally(RandomChanceLootCondition.builder(.05f)) //5% drop chance.
-                        .with(ItemEntry.builder(ModItems.pre_SHULK_ESSENCE));
+                        .with(ItemEntry.builder(ModItems.pre_SHULKER_ESSENCE));
                 tableBuilder.pool(poolBuilder.build());
             }
 

@@ -1,0 +1,47 @@
+{
+  "parent": "minecraft:recipes/root",
+  "criteria": {
+    "has_egg": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "minecraft:egg"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    },
+    "has_the_recipe": {
+      "conditions": {
+        "recipe": "minecraft:vex_spawn_egg"
+      },
+      "trigger": "minecraft:recipe_unlocked"
+    },
+    "has_vex_essence": {
+      "conditions": {
+        "items": [
+          {
+            "items": [
+              "essencefoundry:vex_essence"
+            ]
+          }
+        ]
+      },
+      "trigger": "minecraft:inventory_changed"
+    }
+  },
+  "requirements": [
+    [
+      "has_vex_essence",
+      "has_egg",
+      "has_the_recipe"
+    ]
+  ],
+  "rewards": {
+    "recipes": [
+      "minecraft:vex_spawn_egg"
+    ]
+  }
+}

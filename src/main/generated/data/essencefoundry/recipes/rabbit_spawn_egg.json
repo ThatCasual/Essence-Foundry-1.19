@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "E": {
+      "item": "essencefoundry:rabbit_essence"
+    },
+    "x": {
+      "item": "minecraft:egg"
+    }
+  },
+  "pattern": [
+    "ExE",
+    "xEx",
+    "ExE"
+  ],
+  "result": {
+    "item": "minecraft:rabbit_spawn_egg"
+  }
+}

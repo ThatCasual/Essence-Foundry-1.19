@@ -1,0 +1,19 @@
+{
+  "type": "minecraft:crafting_shaped",
+  "key": {
+    "E": {
+      "item": "essencefoundry:drowned_essence"
+    },
+    "x": {
+      "item": "minecraft:egg"
+    }
+  },
+  "pattern": [
+    "ExE",
+    "xEx",
+    "ExE"
+  ],
+  "result": {
+    "item": "minecraft:drowned_spawn_egg"
+  }
+}

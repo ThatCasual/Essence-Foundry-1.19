@@ -43,8 +43,8 @@ public class ModItems extends Item{
                 .name("skeleton_horse_essence")
                 .build();
 
-    public static EssenceItem pre_SHULK_ESSENCE = new EssenceItem.EssenceItemBuilder()
-                .name("shulk_essence")
+    public static EssenceItem pre_SHULKER_ESSENCE = new EssenceItem.EssenceItemBuilder()
+                .name("shulker_essence")
                 .build();
 
     public static EssenceItem pre_WANDERING_TRADER_ESSENCE = new EssenceItem.EssenceItemBuilder()
@@ -328,7 +328,7 @@ public class ModItems extends Item{
         final Item WOLF_ESSENCE = registerItem(pre_WOLF_ESSENCE);
         final Item SHEEP_ESSENCE = registerItem(pre_SHEEP_ESSENCE);
         final Item SKELETON_HORSE_ESSENCE = registerItem(pre_SKELETON_HORSE_ESSENCE);
-        final Item SHULK_ESSENCE = registerItem(pre_SHULK_ESSENCE);
+        final Item SHULK_ESSENCE = registerItem(pre_SHULKER_ESSENCE);
         final Item WANDERING_TRADER_ESSENCE = registerItem(pre_WANDERING_TRADER_ESSENCE);
         final Item BEE_ESSENCE = registerItem(pre_BEE_ESSENCE);
         final Item LLAMA_ESSENCE = registerItem(pre_LLAMA_ESSENCE);
