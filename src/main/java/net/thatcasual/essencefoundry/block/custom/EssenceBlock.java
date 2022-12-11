@@ -10,28 +10,20 @@ import net.minecraft.util.Formatting;
 import net.thatcasual.essencefoundry.EssenceFoundryMod;
 import net.thatcasual.essencefoundry.item.ModItemGroups;
 import net.thatcasual.essencefoundry.util.DynamicTooltip;
-import net.thatcasual.essencefoundry.util.DynamicTooltipBlock;
+import net.thatcasual.essencefoundry.util.RegistrationData;
 
-public class EssenceBlock extends DynamicTooltipBlock {
+public class EssenceBlock extends Block {
 
-    private String name;
     private int tier_id;
-    private ItemGroup tab;
-
-
-    public String getBlockName(){
-        return name;
-    }
-
-    public ItemGroup getTab(){
-        return tab;
-    }
+    public RegistrationData regdata = new RegistrationData();
 
     private EssenceBlock(Block.Settings settings, String name, int tier_id, ItemGroup tab, DynamicTooltip dynamic_tooltip) {
-        super(settings, dynamic_tooltip);
-        this.name = name;
+        super(settings);
         this.tier_id = tier_id;
-        this.tab = tab;
+        this.regdata.name = name;
+        this.regdata.tab = tab;
+        this.regdata.dynamic_tooltip = dynamic_tooltip;
+
     }
 
     public static class EssenceBlockBuilder{
@@ -64,7 +56,7 @@ public class EssenceBlock extends DynamicTooltipBlock {
             return this;
         }
 
-        public EssenceBlockBuilder dynamic_tooltip(DynamicTooltip dynamic_tooltip){
+        public EssenceBlockBuilder dynamicTooltip(DynamicTooltip dynamic_tooltip){
             this.dynamic_tooltip = dynamic_tooltip;
             return this;
         }

@@ -2,6 +2,22 @@
   "replace": false,
   "values": [
     "essencefoundry:white_essence_block",
-    "essencefoundry:lime_essence_block"
+    "essencefoundry:lime_essence_block",
+    "essencefoundry:green_essence_block",
+    "essencefoundry:cyan_essence_block",
+    "essencefoundry:light_blue_essence_block",
+    "essencefoundry:blue_essence_block",
+    "essencefoundry:light_gray_essence_block",
+    "essencefoundry:gray_essence_block",
+    "essencefoundry:brown_essence_block",
+    "essencefoundry:purple_essence_block",
+    "essencefoundry:magenta_essence_block",
+    "essencefoundry:red_essence_block",
+    "essencefoundry:black_essence_block",
+    "essencefoundry:yellow_essence_block",
+    "essencefoundry:orange_essence_block",
+    "essencefoundry:pink_essence_block",
+
+    "essencefoundry:extractor"
   ]
 }

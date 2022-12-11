@@ -1,21 +1,23 @@
 package net.thatcasual.essencefoundry.block;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
-import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
 import net.minecraft.block.Block;
-import net.minecraft.block.Material;
 import net.minecraft.item.Item;
-import net.minecraft.sound.BlockSoundGroup;
+import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.thatcasual.essencefoundry.EssenceFoundryMod;
 import net.thatcasual.essencefoundry.block.custom.EssenceBlock;
+import net.thatcasual.essencefoundry.block.custom.ExtractorBlock;
+import net.thatcasual.essencefoundry.util.DynamicTooltip;
 import net.thatcasual.essencefoundry.util.DynamicTooltipBlockItem;
+import net.thatcasual.essencefoundry.util.RegistrationData;
 
 public class ModBlocks extends Block {
 
 
-    //create block w/ tooltip
+    //Essence Blocks
     public static EssenceBlock pre_WHITE_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
             .name("white_essence_block")
             .build();
@@ -162,66 +164,76 @@ public class ModBlocks extends Block {
             .build();
 
 
-    public static Block registerBlock(EssenceBlock block){
-        registerBlockItem(block);
-        return Registry.register(Registry.BLOCK, new Identifier(EssenceFoundryMod.MOD_ID, block.getBlockName()), block);
+    //Other blocks.
+    public static ExtractorBlock pre_EXTRACTOR = new ExtractorBlock.ExtractorBuilder()
+            .name("extractor")
+            .dynamicTooltip(new DynamicTooltip(Text.translatable("Used to extract obsidian tears from crying obsidian.").formatted(Formatting.LIGHT_PURPLE)))
+            .build();
+
+
+    public static Block registerBlock(Block block, RegistrationData regdata){
+        registerBlockItem(block, regdata);
+        return Registry.register(Registry.BLOCK, new Identifier(EssenceFoundryMod.MOD_ID, regdata.name), block);
     }
 
-    public static Item registerBlockItem(EssenceBlock block){
-        return Registry.register(Registry.ITEM, new Identifier(EssenceFoundryMod.MOD_ID, block.getBlockName()),
-                new DynamicTooltipBlockItem(block, new FabricItemSettings().group(block.getTab()), block.getDynamicTooltip()));
+    public static Item registerBlockItem(Block block, RegistrationData regdata){
+        return Registry.register(Registry.ITEM, new Identifier(EssenceFoundryMod.MOD_ID, regdata.name),
+                new DynamicTooltipBlockItem(block, new FabricItemSettings().group(regdata.tab), regdata.dynamic_tooltip));
     }
 
     public static void  registerModBlocks(){
         EssenceFoundryMod.LOGGER.debug("Registering ModBlocks for " + EssenceFoundryMod.MOD_ID + "...");
-        final Block WHITE_ESSENCE_BLOCK = registerBlock(pre_WHITE_ESSENCE_BLOCK);
-        final Block TILED_WHITE_ESSENCE_BLOCK = registerBlock(pre_TILED_WHITE_ESSENCE_BLOCK);
-        final Block PETALED_WHITE_ESSENCE_BLOCK = registerBlock(pre_PETALED_WHITE_ESSENCE_BLOCK);
-        final Block ORANGE_ESSENCE_BLOCK = registerBlock(pre_ORANGE_ESSENCE_BLOCK);
-        final Block TILED_ORANGE_ESSENCE_BLOCK = registerBlock(pre_TILED_ORANGE_ESSENCE_BLOCK);
-        final Block PETALED_ORANGE_ESSENCE_BLOCK = registerBlock(pre_PETALED_ORANGE_ESSENCE_BLOCK);
-        final Block MAGENTA_ESSENCE_BLOCK = registerBlock(pre_MAGENTA_ESSENCE_BLOCK);
-        final Block TILED_MAGENTA_ESSENCE_BLOCK = registerBlock(pre_TILED_MAGENTA_ESSENCE_BLOCK);
-        final Block PETALED_MAGENTA_ESSENCE_BLOCK = registerBlock(pre_PETALED_MAGENTA_ESSENCE_BLOCK);
-        final Block LIGHT_BLUE_ESSENCE_BLOCK = registerBlock(pre_LIGHT_BLUE_ESSENCE_BLOCK);
-        final Block TILED_LIGHT_BLUE_ESSENCE_BLOCK = registerBlock(pre_TILED_LIGHT_BLUE_ESSENCE_BLOCK);
-        final Block PETALED_LIGHT_BLUE_ESSENCE_BLOCK = registerBlock(pre_PETALED_LIGHT_BLUE_ESSENCE_BLOCK);
-        final Block YELLOW_ESSENCE_BLOCK = registerBlock(pre_YELLOW_ESSENCE_BLOCK);
-        final Block TILED_YELLOW_ESSENCE_BLOCK = registerBlock(pre_TILED_YELLOW_ESSENCE_BLOCK);
-        final Block TILED_PETALED_ESSENCE_BLOCK = registerBlock(pre_PETALED_YELLOW_ESSENCE_BLOCK);
-        final Block LIME_ESSENCE_BLOCK = registerBlock(pre_LIME_ESSENCE_BLOCK);
-        final Block TILED_LIME_ESSENCE_BLOCK = registerBlock(pre_TILED_LIME_ESSENCE_BLOCK);
-        final Block PETALED_LIME_ESSENCE_BLOCK = registerBlock(pre_PETALED_LIME_ESSENCE_BLOCK);
-        final Block PINK_ESSENCE_BLOCK = registerBlock(pre_PINK_ESSENCE_BLOCK);
-        final Block TILED_PINK_ESSENCE_BLOCK = registerBlock(pre_TILED_PINK_ESSENCE_BLOCK);
-        final Block PETALED_PINK_ESSENCE_BLOCK = registerBlock(pre_PETALED_PINK_ESSENCE_BLOCK);
-        final Block GRAY_ESSENCE_BLOCK = registerBlock(pre_GRAY_ESSENCE_BLOCK);
-        final Block TILED_GRAY_ESSENCE_BLOCK = registerBlock(pre_TILED_GRAY_ESSENCE_BLOCK);
-        final Block PETALED_GRAY_ESSENCE_BLOCK = registerBlock(pre_PETALED_GRAY_ESSENCE_BLOCK);
-        final Block LIGHT_GRAY_ESSENCE_BLOCK = registerBlock(pre_LIGHT_GRAY_ESSENCE_BLOCK);
-        final Block TILED_LIGHT_GRAY_ESSENCE_BLOCK = registerBlock(pre_TILED_LIGHT_GRAY_ESSENCE_BLOCK);
-        final Block PETALED_LIGHT_GRAY_ESSENCE_BLOCK = registerBlock(pre_PETALED_LIGHT_GRAY_ESSENCE_BLOCK);
-        final Block CYAN_ESSENCE_BLOCK = registerBlock(pre_CYAN_ESSENCE_BLOCK);
-        final Block TILED_CYAN_ESSENCE_BLOCK = registerBlock(pre_TILED_CYAN_ESSENCE_BLOCK);
-        final Block PETALED_CYAN_ESSENCE_BLOCK = registerBlock(pre_PETALED_CYAN_ESSENCE_BLOCK);
-        final Block PURPLE_ESSENCE_BLOCK = registerBlock(pre_PURPLE_ESSENCE_BLOCK);
-        final Block TILED_PURPLE_ESSENCE_BLOCK = registerBlock(pre_TILED_PURPLE_ESSENCE_BLOCK);
-        final Block PETALED_PURPLE_ESSENCE_BLOCK = registerBlock(pre_PETALED_PURPLE_ESSENCE_BLOCK);
-        final Block BLUE_ESSENCE_BLOCK = registerBlock(pre_BLUE_ESSENCE_BLOCK);
-        final Block TILED_BLUE_ESSENCE_BLOCK = registerBlock(pre_TILED_BLUE_ESSENCE_BLOCK);
-        final Block PETALED_BLUE_ESSENCE_BLOCK = registerBlock(pre_PETALED_BLUE_ESSENCE_BLOCK);
-        final Block BROWN_ESSENCE_BLOCK = registerBlock(pre_BROWN_ESSENCE_BLOCK);
-        final Block TILED_BROWN_ESSENCE_BLOCK = registerBlock(pre_TILED_BROWN_ESSENCE_BLOCK);
-        final Block PETALED_BROWN_ESSENCE_BLOCK = registerBlock(pre_PETALED_BROWN_ESSENCE_BLOCK);
-        final Block GREEN_ESSENCE_BLOCK = registerBlock(pre_GREEN_ESSENCE_BLOCK);
-        final Block TILED_GREEN_ESSENCE_BLOCK = registerBlock(pre_TILED_GREEN_ESSENCE_BLOCK);
-        final Block PETALED_GREEN_ESSENCE_BLOCK = registerBlock(pre_PETALED_GREEN_ESSENCE_BLOCK);
-        final Block RED_ESSENCE_BLOCK = registerBlock(pre_RED_ESSENCE_BLOCK);
-        final Block TILED_RED_ESSENCE_BLOCK = registerBlock(pre_TILED_RED_ESSENCE_BLOCK);
-        final Block PETALED_RED_ESSENCE_BLOCK = registerBlock(pre_PETALED_RED_ESSENCE_BLOCK);
-        final Block BLACK_ESSENCE_BLOCK = registerBlock(pre_BLACK_ESSENCE_BLOCK);
-        final Block TILED_BLACK_ESSENCE_BLOCK = registerBlock(pre_TILED_BLACK_ESSENCE_BLOCK);
-        final Block PETALED_BLACK_ESSENCE_BLOCK = registerBlock(pre_PETALED_BLACK_ESSENCE_BLOCK);
+        final Block WHITE_ESSENCE_BLOCK = registerBlock(pre_WHITE_ESSENCE_BLOCK, pre_WHITE_ESSENCE_BLOCK.regdata);
+        final Block TILED_WHITE_ESSENCE_BLOCK = registerBlock(pre_TILED_WHITE_ESSENCE_BLOCK, pre_TILED_WHITE_ESSENCE_BLOCK.regdata);
+        final Block PETALED_WHITE_ESSENCE_BLOCK = registerBlock(pre_PETALED_WHITE_ESSENCE_BLOCK, pre_PETALED_WHITE_ESSENCE_BLOCK.regdata);
+        final Block ORANGE_ESSENCE_BLOCK = registerBlock(pre_ORANGE_ESSENCE_BLOCK, pre_ORANGE_ESSENCE_BLOCK.regdata);
+        final Block TILED_ORANGE_ESSENCE_BLOCK = registerBlock(pre_TILED_ORANGE_ESSENCE_BLOCK, pre_TILED_ORANGE_ESSENCE_BLOCK.regdata);
+        final Block PETALED_ORANGE_ESSENCE_BLOCK = registerBlock(pre_PETALED_ORANGE_ESSENCE_BLOCK, pre_PETALED_ORANGE_ESSENCE_BLOCK.regdata);
+        final Block MAGENTA_ESSENCE_BLOCK = registerBlock(pre_MAGENTA_ESSENCE_BLOCK, pre_MAGENTA_ESSENCE_BLOCK.regdata);
+        final Block TILED_MAGENTA_ESSENCE_BLOCK = registerBlock(pre_TILED_MAGENTA_ESSENCE_BLOCK, pre_TILED_MAGENTA_ESSENCE_BLOCK.regdata);
+        final Block PETALED_MAGENTA_ESSENCE_BLOCK = registerBlock(pre_PETALED_MAGENTA_ESSENCE_BLOCK, pre_PETALED_MAGENTA_ESSENCE_BLOCK.regdata);
+        final Block LIGHT_BLUE_ESSENCE_BLOCK = registerBlock(pre_LIGHT_BLUE_ESSENCE_BLOCK, pre_LIGHT_BLUE_ESSENCE_BLOCK.regdata);
+        final Block TILED_LIGHT_BLUE_ESSENCE_BLOCK = registerBlock(pre_TILED_LIGHT_BLUE_ESSENCE_BLOCK, pre_TILED_LIGHT_BLUE_ESSENCE_BLOCK.regdata);
+        final Block PETALED_LIGHT_BLUE_ESSENCE_BLOCK = registerBlock(pre_PETALED_LIGHT_BLUE_ESSENCE_BLOCK, pre_PETALED_LIGHT_BLUE_ESSENCE_BLOCK.regdata);
+        final Block YELLOW_ESSENCE_BLOCK = registerBlock(pre_YELLOW_ESSENCE_BLOCK, pre_YELLOW_ESSENCE_BLOCK.regdata);
+        final Block TILED_YELLOW_ESSENCE_BLOCK = registerBlock(pre_TILED_YELLOW_ESSENCE_BLOCK, pre_TILED_YELLOW_ESSENCE_BLOCK.regdata);
+        final Block TILED_PETALED_ESSENCE_BLOCK = registerBlock(pre_PETALED_YELLOW_ESSENCE_BLOCK, pre_PETALED_YELLOW_ESSENCE_BLOCK.regdata);
+        final Block LIME_ESSENCE_BLOCK = registerBlock(pre_LIME_ESSENCE_BLOCK, pre_LIME_ESSENCE_BLOCK.regdata);
+        final Block TILED_LIME_ESSENCE_BLOCK = registerBlock(pre_TILED_LIME_ESSENCE_BLOCK, pre_TILED_LIME_ESSENCE_BLOCK.regdata);
+        final Block PETALED_LIME_ESSENCE_BLOCK = registerBlock(pre_PETALED_LIME_ESSENCE_BLOCK, pre_PETALED_LIME_ESSENCE_BLOCK.regdata);
+        final Block PINK_ESSENCE_BLOCK = registerBlock(pre_PINK_ESSENCE_BLOCK, pre_PINK_ESSENCE_BLOCK.regdata);
+        final Block TILED_PINK_ESSENCE_BLOCK = registerBlock(pre_TILED_PINK_ESSENCE_BLOCK, pre_TILED_PINK_ESSENCE_BLOCK.regdata);
+        final Block PETALED_PINK_ESSENCE_BLOCK = registerBlock(pre_PETALED_PINK_ESSENCE_BLOCK, pre_PETALED_PINK_ESSENCE_BLOCK.regdata);
+        final Block GRAY_ESSENCE_BLOCK = registerBlock(pre_GRAY_ESSENCE_BLOCK, pre_GRAY_ESSENCE_BLOCK.regdata);
+        final Block TILED_GRAY_ESSENCE_BLOCK = registerBlock(pre_TILED_GRAY_ESSENCE_BLOCK, pre_TILED_GRAY_ESSENCE_BLOCK.regdata);
+        final Block PETALED_GRAY_ESSENCE_BLOCK = registerBlock(pre_PETALED_GRAY_ESSENCE_BLOCK, pre_PETALED_GRAY_ESSENCE_BLOCK.regdata);
+        final Block LIGHT_GRAY_ESSENCE_BLOCK = registerBlock(pre_LIGHT_GRAY_ESSENCE_BLOCK, pre_LIGHT_GRAY_ESSENCE_BLOCK.regdata);
+        final Block TILED_LIGHT_GRAY_ESSENCE_BLOCK = registerBlock(pre_TILED_LIGHT_GRAY_ESSENCE_BLOCK, pre_TILED_LIGHT_GRAY_ESSENCE_BLOCK.regdata);
+        final Block PETALED_LIGHT_GRAY_ESSENCE_BLOCK = registerBlock(pre_PETALED_LIGHT_GRAY_ESSENCE_BLOCK, pre_PETALED_LIGHT_GRAY_ESSENCE_BLOCK.regdata);
+        final Block CYAN_ESSENCE_BLOCK = registerBlock(pre_CYAN_ESSENCE_BLOCK, pre_CYAN_ESSENCE_BLOCK.regdata);
+        final Block TILED_CYAN_ESSENCE_BLOCK = registerBlock(pre_TILED_CYAN_ESSENCE_BLOCK, pre_TILED_CYAN_ESSENCE_BLOCK.regdata);
+        final Block PETALED_CYAN_ESSENCE_BLOCK = registerBlock(pre_PETALED_CYAN_ESSENCE_BLOCK, pre_PETALED_CYAN_ESSENCE_BLOCK.regdata);
+        final Block PURPLE_ESSENCE_BLOCK = registerBlock(pre_PURPLE_ESSENCE_BLOCK, pre_PURPLE_ESSENCE_BLOCK.regdata);
+        final Block TILED_PURPLE_ESSENCE_BLOCK = registerBlock(pre_TILED_PURPLE_ESSENCE_BLOCK, pre_TILED_PURPLE_ESSENCE_BLOCK.regdata);
+        final Block PETALED_PURPLE_ESSENCE_BLOCK = registerBlock(pre_PETALED_PURPLE_ESSENCE_BLOCK, pre_PETALED_PURPLE_ESSENCE_BLOCK.regdata);
+        final Block BLUE_ESSENCE_BLOCK = registerBlock(pre_BLUE_ESSENCE_BLOCK, pre_BLUE_ESSENCE_BLOCK.regdata);
+        final Block TILED_BLUE_ESSENCE_BLOCK = registerBlock(pre_TILED_BLUE_ESSENCE_BLOCK, pre_TILED_BLUE_ESSENCE_BLOCK.regdata);
+        final Block PETALED_BLUE_ESSENCE_BLOCK = registerBlock(pre_PETALED_BLUE_ESSENCE_BLOCK, pre_PETALED_BLUE_ESSENCE_BLOCK.regdata);
+        final Block BROWN_ESSENCE_BLOCK = registerBlock(pre_BROWN_ESSENCE_BLOCK, pre_BROWN_ESSENCE_BLOCK.regdata);
+        final Block TILED_BROWN_ESSENCE_BLOCK = registerBlock(pre_TILED_BROWN_ESSENCE_BLOCK, pre_TILED_BROWN_ESSENCE_BLOCK.regdata);
+        final Block PETALED_BROWN_ESSENCE_BLOCK = registerBlock(pre_PETALED_BROWN_ESSENCE_BLOCK, pre_PETALED_BROWN_ESSENCE_BLOCK.regdata);
+        final Block GREEN_ESSENCE_BLOCK = registerBlock(pre_GREEN_ESSENCE_BLOCK, pre_GREEN_ESSENCE_BLOCK.regdata);
+        final Block TILED_GREEN_ESSENCE_BLOCK = registerBlock(pre_TILED_GREEN_ESSENCE_BLOCK, pre_TILED_GREEN_ESSENCE_BLOCK.regdata);
+        final Block PETALED_GREEN_ESSENCE_BLOCK = registerBlock(pre_PETALED_GREEN_ESSENCE_BLOCK, pre_PETALED_GREEN_ESSENCE_BLOCK.regdata);
+        final Block RED_ESSENCE_BLOCK = registerBlock(pre_RED_ESSENCE_BLOCK, pre_RED_ESSENCE_BLOCK.regdata);
+        final Block TILED_RED_ESSENCE_BLOCK = registerBlock(pre_TILED_RED_ESSENCE_BLOCK, pre_TILED_RED_ESSENCE_BLOCK.regdata);
+        final Block PETALED_RED_ESSENCE_BLOCK = registerBlock(pre_PETALED_RED_ESSENCE_BLOCK, pre_PETALED_RED_ESSENCE_BLOCK.regdata);
+        final Block BLACK_ESSENCE_BLOCK = registerBlock(pre_BLACK_ESSENCE_BLOCK, pre_BLACK_ESSENCE_BLOCK.regdata);
+        final Block TILED_BLACK_ESSENCE_BLOCK = registerBlock(pre_TILED_BLACK_ESSENCE_BLOCK, pre_TILED_BLACK_ESSENCE_BLOCK.regdata);
+        final Block PETALED_BLACK_ESSENCE_BLOCK = registerBlock(pre_PETALED_BLACK_ESSENCE_BLOCK, pre_PETALED_BLACK_ESSENCE_BLOCK.regdata);
+
+        //Other blocks.
+        final Block EXTRACTOR = registerBlock(pre_EXTRACTOR, pre_EXTRACTOR.regdata);
         EssenceFoundryMod.LOGGER.debug("Finished registering ModBlocks for " + EssenceFoundryMod.MOD_ID + ".");
     }
 

@@ -13,12 +13,12 @@
       },
       "trigger": "minecraft:inventory_changed"
     },
-    "has_shulk_essence": {
+    "has_shulker_essence": {
       "conditions": {
         "items": [
           {
             "items": [
-              "essencefoundry:shulk_essence"
+              "essencefoundry:shulker_essence"
             ]
           }
         ]
@@ -34,7 +34,7 @@
   },
   "requirements": [
     [
-      "has_shulk_essence",
+      "has_shulker_essence",
       "has_egg",
       "has_the_recipe"
     ]

@@ -2,6 +2,7 @@ package net.thatcasual.essencefoundry;
 
 import net.fabricmc.api.ModInitializer;
 import net.thatcasual.essencefoundry.block.ModBlocks;
+import net.thatcasual.essencefoundry.fluid.ModFluids;
 import net.thatcasual.essencefoundry.item.ModItems;
 import net.thatcasual.essencefoundry.util.EssenceFoundryModLootTableModifiers;
 import org.slf4j.Logger;
@@ -20,6 +21,7 @@ public class EssenceFoundryMod implements ModInitializer {
 
 		ModItems.registerModItems();
 		ModBlocks.registerModBlocks();
+		ModFluids.registerModFluids();
 
 		EssenceFoundryModLootTableModifiers.modifyLootTables();
 

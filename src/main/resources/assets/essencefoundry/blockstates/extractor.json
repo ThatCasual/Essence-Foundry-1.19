@@ -1,0 +1,19 @@
+{
+  "variants": {
+    "facing=north": {
+      "model": "essencefoundry:block/extractor"
+    },
+    "facing=east": {
+      "model": "essencefoundry:block/extractor",
+      "y": 90
+    },
+    "facing=south": {
+      "model": "essencefoundry:block/extractor",
+      "y": 180
+    },
+    "facing=west": {
+      "model": "essencefoundry:block/extractor",
+      "y": 270
+    }
+  }
+}

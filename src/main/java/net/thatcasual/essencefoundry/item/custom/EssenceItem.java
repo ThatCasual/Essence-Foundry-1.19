@@ -1,30 +1,31 @@
 package net.thatcasual.essencefoundry.item.custom;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
 import net.thatcasual.essencefoundry.EssenceFoundryMod;
 import net.thatcasual.essencefoundry.item.ModItemGroups;
 import net.thatcasual.essencefoundry.util.DynamicTooltip;
-import net.thatcasual.essencefoundry.util.DynamicTooltipItem;
+import net.thatcasual.essencefoundry.util.RegistrationData;
 
-public class EssenceItem extends DynamicTooltipItem {
+public class EssenceItem extends Item {
 
-    private String name;
     private int tier_id;
-    private ItemGroup tab;
+    private RegistrationData regdata = new RegistrationData();
 
     public String getItemName(){
-        return this.name;
+        return this.regdata.name;
     }
 
 
     private EssenceItem(Settings settings, int tier_id, String name, ItemGroup tab, DynamicTooltip dynamic_tooltip) {
-        super(settings, dynamic_tooltip);
-        this.name = name;
+        super(settings);
         this.tier_id = tier_id;
-        this.tab = tab;
+        this.regdata.name = name;
+        this.regdata.tab = tab;
+        this.regdata.dynamic_tooltip = dynamic_tooltip;
     }
 
 
@@ -57,7 +58,7 @@ public class EssenceItem extends DynamicTooltipItem {
             return this;
         }
 
-        public EssenceItemBuilder dynamic_tooltip(DynamicTooltip dynamic_tooltip){
+        public EssenceItemBuilder dynamicTooltip(DynamicTooltip dynamic_tooltip){
             this.dynamic_tooltip = dynamic_tooltip;
             return this;
         }

@@ -67,6 +67,7 @@
   "item.essencefoundry.enderman_essence": "Enderman Essence",
   "item.essencefoundry.wither_skeleton_essence": "Wither Skeleton Essence",
   "item.essencefoundry.warden_essence": "Warden Essence",
+  "item.essencefoundry.obsidian_tears_bucket": "Bucket of Obsidian Tears",
 
   "block.essencefoundry.white_essence_block": "White Essence Block",
   "block.essencefoundry.tiled_white_essence_block": "Tiled White Essence Block",
@@ -116,6 +117,11 @@
   "block.essencefoundry.black_essence_block": "Black Essence Block",
   "block.essencefoundry.tiled_black_essence_block": "Tiled Black Essence Block",
   "block.essencefoundry.petaled_black_essence_block": "Petaled Black Essence Block",
+
+  "block.essencefoundry.extractor": "Extractor",
+
+  "fluid.essencefoundry.obsidian_tears": "Obsidian Tears",
+  "fluid.essencefoundry.flowing_obsidian_tears": "Obsidian Tears",
 
   "itemGroup.essencefoundry.essence_foundry": "Essence Foundry"
 }

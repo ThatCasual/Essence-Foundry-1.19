@@ -2,7 +2,8 @@ package net.thatcasual.essencefoundry.util;
 
 import net.minecraft.client.gui.screen.Screen;
 import net.minecraft.client.item.TooltipContext;
-import net.minecraft.item.Item;
+import net.minecraft.fluid.Fluid;
+import net.minecraft.item.BucketItem;
 import net.minecraft.item.ItemStack;
 import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
@@ -12,8 +13,7 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.List;
 
-@Deprecated
-public class DynamicTooltipItem extends Item {
+public class DynamicTooltipBucketItem extends BucketItem {
 
     private DynamicTooltip dynamic_tooltip;
 
@@ -29,9 +29,13 @@ public class DynamicTooltipItem extends Item {
         this.dynamic_tooltip.addToTooltip(text);
     }
 
+    public DynamicTooltipBucketItem(Fluid fluid, Settings settings, DynamicTooltip dynamic_tooltip) {
+        super(fluid, settings);
+        this.dynamic_tooltip = dynamic_tooltip;
+    }
+
     @Override
     public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
-
         if(Screen.hasShiftDown()){
             List<MutableText> text = dynamic_tooltip.getEntries();
             for (int i = 0; i < text.size(); i++){
@@ -43,10 +47,5 @@ public class DynamicTooltipItem extends Item {
         }
 
         super.appendTooltip(stack, world, tooltip, context);
-    }
-
-    public DynamicTooltipItem(Settings settings, DynamicTooltip dynamic_tooltip) {
-        super(settings);
-        this.dynamic_tooltip = dynamic_tooltip;
     }
 }

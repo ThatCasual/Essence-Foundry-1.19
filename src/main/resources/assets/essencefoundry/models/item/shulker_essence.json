@@ -1,6 +1,6 @@
 {
   "parent": "item/generated",
   "textures": {
-    "layer0": "essencefoundry:item/shulk_essence"
+    "layer0": "essencefoundry:item/shulker_essence"
   }
 }
