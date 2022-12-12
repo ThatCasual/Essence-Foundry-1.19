@@ -1,10 +1,7 @@
 package net.thatcasual.essencefoundry.block.custom;
 
 import net.fabricmc.fabric.api.object.builder.v1.block.FabricBlockSettings;
-import net.minecraft.block.Block;
-import net.minecraft.block.BlockState;
-import net.minecraft.block.HorizontalFacingBlock;
-import net.minecraft.block.Material;
+import net.minecraft.block.*;
 import net.minecraft.item.ItemGroup;
 import net.minecraft.item.ItemPlacementContext;
 import net.minecraft.state.StateManager;
@@ -12,22 +9,34 @@ import net.minecraft.state.property.DirectionProperty;
 import net.minecraft.state.property.Properties;
 import net.minecraft.util.BlockMirror;
 import net.minecraft.util.BlockRotation;
+import net.minecraft.util.function.BooleanBiFunction;
+import net.minecraft.util.math.BlockPos;
+import net.minecraft.util.shape.VoxelShape;
+import net.minecraft.util.shape.VoxelShapes;
+import net.minecraft.world.BlockView;
 import net.thatcasual.essencefoundry.item.ModItemGroups;
 import net.thatcasual.essencefoundry.util.DynamicTooltip;
 import net.thatcasual.essencefoundry.util.RegistrationData;
 import org.jetbrains.annotations.Nullable;
+
+import java.util.stream.Stream;
 
 public class ExtractorBlock extends HorizontalFacingBlock {
 
     public  static final DirectionProperty FACING = Properties.HORIZONTAL_FACING;
     public static RegistrationData regdata = new RegistrationData();
 
-    private ExtractorBlock(Settings settings, String name, ItemGroup tab, DynamicTooltip dynamic_tooltip) {
-        super(settings);
-        this.regdata.name = name;
-        this.regdata.tab = tab;
-        this.regdata.dynamic_tooltip = dynamic_tooltip;
+    private static VoxelShape SHAPE = Stream.of(
+            Block.createCuboidShape(0,0,0,16,12,16),
+            Block.createCuboidShape(5,12,5,11,16,11))
+            .reduce((v1, v2) -> VoxelShapes.combineAndSimplify(v1, v2, BooleanBiFunction.OR)).get();
+
+    @Override
+    public VoxelShape getOutlineShape(BlockState state, BlockView world, BlockPos pos, ShapeContext context) {
+        return SHAPE;
     }
+
+
 
     @Nullable
     @Override
@@ -48,6 +57,13 @@ public class ExtractorBlock extends HorizontalFacingBlock {
     @Override
     protected void appendProperties(StateManager.Builder<Block, BlockState> builder) {
         builder.add(FACING);
+    }
+
+    private ExtractorBlock(Settings settings, String name, ItemGroup tab, DynamicTooltip dynamic_tooltip) {
+        super(settings);
+        this.regdata.name = name;
+        this.regdata.tab = tab;
+        this.regdata.dynamic_tooltip = dynamic_tooltip;
     }
 
     public static class ExtractorBuilder {

@@ -14,162 +14,57 @@ import net.thatcasual.essencefoundry.util.DynamicTooltip;
 import net.thatcasual.essencefoundry.util.DynamicTooltipBlockItem;
 import net.thatcasual.essencefoundry.util.RegistrationData;
 
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.LinkedHashMap;
+import java.util.Locale;
+
 public class ModBlocks extends Block {
 
+    //Specifies essence block colors.
+    public static final ArrayList<String> colors = new ArrayList<>(){{
+       add("white");
+       add("magenta");
+       add("yellow");
+       add("lime");
+       add("pink");
+       add("light_gray");
+       add("brown");
+       add("green");
+       add("cyan");
+       add("purple");
+        add("gray");
+       add("light_blue");
+       add("blue");
+       add("orange");
+       add("red");
+       add("black");
+    }};
+    //Specifies essence block variants.
+    public static final ArrayList<String> styles = new ArrayList<>(){{
+        add("");
+        add("tiled_");
+        add("petaled_");
+    }};
+    //Specifies essence block shapes.
+    public static final ArrayList<String> shapes = new ArrayList<>(){{
+        add("block");
+    }};
 
-    //Essence Blocks
-    public static EssenceBlock pre_WHITE_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("white_essence_block")
-            .build();
-    public static EssenceBlock pre_TILED_WHITE_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("tiled_white_essence_block")
-            .build();
-    public static EssenceBlock pre_PETALED_WHITE_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("petaled_white_essence_block")
-            .build();
-    public static EssenceBlock pre_ORANGE_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("orange_essence_block")
-            .build();
-    public static EssenceBlock pre_TILED_ORANGE_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("tiled_orange_essence_block")
-            .build();
-    public static EssenceBlock pre_PETALED_ORANGE_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("petaled_orange_essence_block")
-            .build();
-    public static EssenceBlock pre_MAGENTA_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("magenta_essence_block")
-            .build();
-    public static EssenceBlock pre_TILED_MAGENTA_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("tiled_magenta_essence_block")
-            .build();
-    public static EssenceBlock pre_PETALED_MAGENTA_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("petaled_magenta_essence_block")
-            .build();
-    public static EssenceBlock pre_LIGHT_BLUE_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("light_blue_essence_block")
-            .build();
-    public static EssenceBlock pre_TILED_LIGHT_BLUE_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("tiled_light_blue_essence_block")
-            .build();
-    public static EssenceBlock pre_PETALED_LIGHT_BLUE_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("petaled_light_blue_essence_block")
-            .build();
-    public static EssenceBlock pre_YELLOW_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("yellow_essence_block")
-            .build();
-    public static EssenceBlock pre_TILED_YELLOW_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("tiled_yellow_essence_block")
-            .build();
-    public static EssenceBlock pre_PETALED_YELLOW_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("petaled_yellow_essence_block")
-            .build();
-    public static EssenceBlock pre_LIME_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("lime_essence_block")
-            .build();
-    public static EssenceBlock pre_TILED_LIME_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("tiled_lime_essence_block")
-            .build();
-    public static EssenceBlock pre_PETALED_LIME_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("petaled_lime_essence_block")
-            .build();
-    public static EssenceBlock pre_PINK_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("pink_essence_block")
-            .build();
-    public static EssenceBlock pre_TILED_PINK_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("tiled_pink_essence_block")
-            .build();
-    public static EssenceBlock pre_PETALED_PINK_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("petaled_pink_essence_block")
-            .build();
-    public static EssenceBlock pre_GRAY_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("gray_essence_block")
-            .build();
-    public static EssenceBlock pre_TILED_GRAY_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("tiled_gray_essence_block")
-            .build();
-    public static EssenceBlock pre_PETALED_GRAY_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("petaled_gray_essence_block")
-            .build();
-    public static EssenceBlock pre_LIGHT_GRAY_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("light_gray_essence_block")
-            .build();
-    public static EssenceBlock pre_TILED_LIGHT_GRAY_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("tiled_light_gray_essence_block")
-            .build();
-    public static EssenceBlock pre_PETALED_LIGHT_GRAY_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("petaled_light_gray_essence_block")
-            .build();
-    public static EssenceBlock pre_CYAN_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("cyan_essence_block")
-            .build();
-    public static EssenceBlock pre_TILED_CYAN_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("tiled_cyan_essence_block")
-            .build();
-    public static EssenceBlock pre_PETALED_CYAN_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("petaled_cyan_essence_block")
-            .build();
-    public static EssenceBlock pre_PURPLE_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("purple_essence_block")
-            .build();
-    public static EssenceBlock pre_TILED_PURPLE_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("tiled_purple_essence_block")
-            .build();
-    public static EssenceBlock pre_PETALED_PURPLE_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("petaled_purple_essence_block")
-            .build();
-    public static EssenceBlock pre_BLUE_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("blue_essence_block")
-            .build();
-    public static EssenceBlock pre_TILED_BLUE_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("tiled_blue_essence_block")
-            .build();
-    public static EssenceBlock pre_PETALED_BLUE_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("petaled_blue_essence_block")
-            .build();
-    public static EssenceBlock pre_BROWN_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("brown_essence_block")
-            .build();
-    public static EssenceBlock pre_TILED_BROWN_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("tiled_brown_essence_block")
-            .build();
-    public static EssenceBlock pre_PETALED_BROWN_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("petaled_brown_essence_block")
-            .build();
-    public static EssenceBlock pre_GREEN_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("green_essence_block")
-            .build();
-    public static EssenceBlock pre_TILED_GREEN_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("tiled_green_essence_block")
-            .build();
-    public static EssenceBlock pre_PETALED_GREEN_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("petaled_green_essence_block")
-            .build();
-    public static EssenceBlock pre_RED_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("red_essence_block")
-            .build();
-    public static EssenceBlock pre_TILED_RED_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("tiled_red_essence_block")
-            .build();
-    public static EssenceBlock pre_PETALED_RED_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("petaled_red_essence_block")
-            .build();
-    public static EssenceBlock pre_BLACK_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("black_essence_block")
-            .build();
-    public static EssenceBlock pre_TILED_BLACK_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("tiled_black_essence_block")
-            .build();
-    public static EssenceBlock pre_PETALED_BLACK_ESSENCE_BLOCK = new EssenceBlock.EssenceBlockBuilder()
-            .name("petaled_black_essence_block")
-            .build();
+    //LinkedHashMap for each style variant.
+    public static LinkedHashMap<String, Block> essenceBlocks = new LinkedHashMap();
+    public static LinkedHashMap<String, Block> tiledEssenceBlocks = new LinkedHashMap();
+    public static LinkedHashMap<String, Block> petaledEssenceBlocks = new LinkedHashMap();
 
+    //Links the style prefix with the hashmap so the mod knows where to put each block upon registration.
+    public static HashMap<String, LinkedHashMap> styleMapAssignments = new HashMap<>(){{
+        put("", essenceBlocks);
+        put("tiled_", tiledEssenceBlocks);
+        put("petaled_", petaledEssenceBlocks);
+    }};
 
     //Other blocks.
-    public static ExtractorBlock pre_EXTRACTOR = new ExtractorBlock.ExtractorBuilder()
-            .name("extractor")
-            .dynamicTooltip(new DynamicTooltip(Text.translatable("Used to extract obsidian tears from crying obsidian.").formatted(Formatting.LIGHT_PURPLE)))
-            .build();
-
+    public static LinkedHashMap<String, Block> otherBlocks = new LinkedHashMap<>();
 
     public static Block registerBlock(Block block, RegistrationData regdata){
         registerBlockItem(block, regdata);
@@ -183,57 +78,29 @@ public class ModBlocks extends Block {
 
     public static void  registerModBlocks(){
         EssenceFoundryMod.LOGGER.debug("Registering ModBlocks for " + EssenceFoundryMod.MOD_ID + "...");
-        final Block WHITE_ESSENCE_BLOCK = registerBlock(pre_WHITE_ESSENCE_BLOCK, pre_WHITE_ESSENCE_BLOCK.regdata);
-        final Block TILED_WHITE_ESSENCE_BLOCK = registerBlock(pre_TILED_WHITE_ESSENCE_BLOCK, pre_TILED_WHITE_ESSENCE_BLOCK.regdata);
-        final Block PETALED_WHITE_ESSENCE_BLOCK = registerBlock(pre_PETALED_WHITE_ESSENCE_BLOCK, pre_PETALED_WHITE_ESSENCE_BLOCK.regdata);
-        final Block ORANGE_ESSENCE_BLOCK = registerBlock(pre_ORANGE_ESSENCE_BLOCK, pre_ORANGE_ESSENCE_BLOCK.regdata);
-        final Block TILED_ORANGE_ESSENCE_BLOCK = registerBlock(pre_TILED_ORANGE_ESSENCE_BLOCK, pre_TILED_ORANGE_ESSENCE_BLOCK.regdata);
-        final Block PETALED_ORANGE_ESSENCE_BLOCK = registerBlock(pre_PETALED_ORANGE_ESSENCE_BLOCK, pre_PETALED_ORANGE_ESSENCE_BLOCK.regdata);
-        final Block MAGENTA_ESSENCE_BLOCK = registerBlock(pre_MAGENTA_ESSENCE_BLOCK, pre_MAGENTA_ESSENCE_BLOCK.regdata);
-        final Block TILED_MAGENTA_ESSENCE_BLOCK = registerBlock(pre_TILED_MAGENTA_ESSENCE_BLOCK, pre_TILED_MAGENTA_ESSENCE_BLOCK.regdata);
-        final Block PETALED_MAGENTA_ESSENCE_BLOCK = registerBlock(pre_PETALED_MAGENTA_ESSENCE_BLOCK, pre_PETALED_MAGENTA_ESSENCE_BLOCK.regdata);
-        final Block LIGHT_BLUE_ESSENCE_BLOCK = registerBlock(pre_LIGHT_BLUE_ESSENCE_BLOCK, pre_LIGHT_BLUE_ESSENCE_BLOCK.regdata);
-        final Block TILED_LIGHT_BLUE_ESSENCE_BLOCK = registerBlock(pre_TILED_LIGHT_BLUE_ESSENCE_BLOCK, pre_TILED_LIGHT_BLUE_ESSENCE_BLOCK.regdata);
-        final Block PETALED_LIGHT_BLUE_ESSENCE_BLOCK = registerBlock(pre_PETALED_LIGHT_BLUE_ESSENCE_BLOCK, pre_PETALED_LIGHT_BLUE_ESSENCE_BLOCK.regdata);
-        final Block YELLOW_ESSENCE_BLOCK = registerBlock(pre_YELLOW_ESSENCE_BLOCK, pre_YELLOW_ESSENCE_BLOCK.regdata);
-        final Block TILED_YELLOW_ESSENCE_BLOCK = registerBlock(pre_TILED_YELLOW_ESSENCE_BLOCK, pre_TILED_YELLOW_ESSENCE_BLOCK.regdata);
-        final Block TILED_PETALED_ESSENCE_BLOCK = registerBlock(pre_PETALED_YELLOW_ESSENCE_BLOCK, pre_PETALED_YELLOW_ESSENCE_BLOCK.regdata);
-        final Block LIME_ESSENCE_BLOCK = registerBlock(pre_LIME_ESSENCE_BLOCK, pre_LIME_ESSENCE_BLOCK.regdata);
-        final Block TILED_LIME_ESSENCE_BLOCK = registerBlock(pre_TILED_LIME_ESSENCE_BLOCK, pre_TILED_LIME_ESSENCE_BLOCK.regdata);
-        final Block PETALED_LIME_ESSENCE_BLOCK = registerBlock(pre_PETALED_LIME_ESSENCE_BLOCK, pre_PETALED_LIME_ESSENCE_BLOCK.regdata);
-        final Block PINK_ESSENCE_BLOCK = registerBlock(pre_PINK_ESSENCE_BLOCK, pre_PINK_ESSENCE_BLOCK.regdata);
-        final Block TILED_PINK_ESSENCE_BLOCK = registerBlock(pre_TILED_PINK_ESSENCE_BLOCK, pre_TILED_PINK_ESSENCE_BLOCK.regdata);
-        final Block PETALED_PINK_ESSENCE_BLOCK = registerBlock(pre_PETALED_PINK_ESSENCE_BLOCK, pre_PETALED_PINK_ESSENCE_BLOCK.regdata);
-        final Block GRAY_ESSENCE_BLOCK = registerBlock(pre_GRAY_ESSENCE_BLOCK, pre_GRAY_ESSENCE_BLOCK.regdata);
-        final Block TILED_GRAY_ESSENCE_BLOCK = registerBlock(pre_TILED_GRAY_ESSENCE_BLOCK, pre_TILED_GRAY_ESSENCE_BLOCK.regdata);
-        final Block PETALED_GRAY_ESSENCE_BLOCK = registerBlock(pre_PETALED_GRAY_ESSENCE_BLOCK, pre_PETALED_GRAY_ESSENCE_BLOCK.regdata);
-        final Block LIGHT_GRAY_ESSENCE_BLOCK = registerBlock(pre_LIGHT_GRAY_ESSENCE_BLOCK, pre_LIGHT_GRAY_ESSENCE_BLOCK.regdata);
-        final Block TILED_LIGHT_GRAY_ESSENCE_BLOCK = registerBlock(pre_TILED_LIGHT_GRAY_ESSENCE_BLOCK, pre_TILED_LIGHT_GRAY_ESSENCE_BLOCK.regdata);
-        final Block PETALED_LIGHT_GRAY_ESSENCE_BLOCK = registerBlock(pre_PETALED_LIGHT_GRAY_ESSENCE_BLOCK, pre_PETALED_LIGHT_GRAY_ESSENCE_BLOCK.regdata);
-        final Block CYAN_ESSENCE_BLOCK = registerBlock(pre_CYAN_ESSENCE_BLOCK, pre_CYAN_ESSENCE_BLOCK.regdata);
-        final Block TILED_CYAN_ESSENCE_BLOCK = registerBlock(pre_TILED_CYAN_ESSENCE_BLOCK, pre_TILED_CYAN_ESSENCE_BLOCK.regdata);
-        final Block PETALED_CYAN_ESSENCE_BLOCK = registerBlock(pre_PETALED_CYAN_ESSENCE_BLOCK, pre_PETALED_CYAN_ESSENCE_BLOCK.regdata);
-        final Block PURPLE_ESSENCE_BLOCK = registerBlock(pre_PURPLE_ESSENCE_BLOCK, pre_PURPLE_ESSENCE_BLOCK.regdata);
-        final Block TILED_PURPLE_ESSENCE_BLOCK = registerBlock(pre_TILED_PURPLE_ESSENCE_BLOCK, pre_TILED_PURPLE_ESSENCE_BLOCK.regdata);
-        final Block PETALED_PURPLE_ESSENCE_BLOCK = registerBlock(pre_PETALED_PURPLE_ESSENCE_BLOCK, pre_PETALED_PURPLE_ESSENCE_BLOCK.regdata);
-        final Block BLUE_ESSENCE_BLOCK = registerBlock(pre_BLUE_ESSENCE_BLOCK, pre_BLUE_ESSENCE_BLOCK.regdata);
-        final Block TILED_BLUE_ESSENCE_BLOCK = registerBlock(pre_TILED_BLUE_ESSENCE_BLOCK, pre_TILED_BLUE_ESSENCE_BLOCK.regdata);
-        final Block PETALED_BLUE_ESSENCE_BLOCK = registerBlock(pre_PETALED_BLUE_ESSENCE_BLOCK, pre_PETALED_BLUE_ESSENCE_BLOCK.regdata);
-        final Block BROWN_ESSENCE_BLOCK = registerBlock(pre_BROWN_ESSENCE_BLOCK, pre_BROWN_ESSENCE_BLOCK.regdata);
-        final Block TILED_BROWN_ESSENCE_BLOCK = registerBlock(pre_TILED_BROWN_ESSENCE_BLOCK, pre_TILED_BROWN_ESSENCE_BLOCK.regdata);
-        final Block PETALED_BROWN_ESSENCE_BLOCK = registerBlock(pre_PETALED_BROWN_ESSENCE_BLOCK, pre_PETALED_BROWN_ESSENCE_BLOCK.regdata);
-        final Block GREEN_ESSENCE_BLOCK = registerBlock(pre_GREEN_ESSENCE_BLOCK, pre_GREEN_ESSENCE_BLOCK.regdata);
-        final Block TILED_GREEN_ESSENCE_BLOCK = registerBlock(pre_TILED_GREEN_ESSENCE_BLOCK, pre_TILED_GREEN_ESSENCE_BLOCK.regdata);
-        final Block PETALED_GREEN_ESSENCE_BLOCK = registerBlock(pre_PETALED_GREEN_ESSENCE_BLOCK, pre_PETALED_GREEN_ESSENCE_BLOCK.regdata);
-        final Block RED_ESSENCE_BLOCK = registerBlock(pre_RED_ESSENCE_BLOCK, pre_RED_ESSENCE_BLOCK.regdata);
-        final Block TILED_RED_ESSENCE_BLOCK = registerBlock(pre_TILED_RED_ESSENCE_BLOCK, pre_TILED_RED_ESSENCE_BLOCK.regdata);
-        final Block PETALED_RED_ESSENCE_BLOCK = registerBlock(pre_PETALED_RED_ESSENCE_BLOCK, pre_PETALED_RED_ESSENCE_BLOCK.regdata);
-        final Block BLACK_ESSENCE_BLOCK = registerBlock(pre_BLACK_ESSENCE_BLOCK, pre_BLACK_ESSENCE_BLOCK.regdata);
-        final Block TILED_BLACK_ESSENCE_BLOCK = registerBlock(pre_TILED_BLACK_ESSENCE_BLOCK, pre_TILED_BLACK_ESSENCE_BLOCK.regdata);
-        final Block PETALED_BLACK_ESSENCE_BLOCK = registerBlock(pre_PETALED_BLACK_ESSENCE_BLOCK, pre_PETALED_BLACK_ESSENCE_BLOCK.regdata);
+
+        //Creates a registered block item for each possible color, style, and shape combination and adds it to the essenceBlocks map.
+        String name;
+        EssenceBlock essenceBlock;
+        for(String color : colors){
+            for(String style : styles){
+                for(String shape : shapes){
+                    name = style + color + "_essence_" + shape;
+                    essenceBlock = new EssenceBlock.EssenceBlockBuilder().name(name).build();
+                    styleMapAssignments.get(style).put(name, registerBlock(essenceBlock, essenceBlock.regdata));
+                    System.out.println("Created " + name + " -- " + essenceBlocks.get(name));
+                }
+            }
+        }
 
         //Other blocks.
-        final Block EXTRACTOR = registerBlock(pre_EXTRACTOR, pre_EXTRACTOR.regdata);
+        name = "extractor";
+        ExtractorBlock extractorBlock = new ExtractorBlock.ExtractorBuilder()
+                .name("extractor")
+                .dynamicTooltip(new DynamicTooltip(Text.translatable("Used to extract obsidian tears from crying obsidian.").formatted(Formatting.LIGHT_PURPLE)))
+                .build();
+        otherBlocks.put(name, registerBlock(extractorBlock, extractorBlock.regdata));
+
         EssenceFoundryMod.LOGGER.debug("Finished registering ModBlocks for " + EssenceFoundryMod.MOD_ID + ".");
     }
 

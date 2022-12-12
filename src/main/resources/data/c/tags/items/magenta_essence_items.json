@@ -1,7 +1,7 @@
 {
   "replace": false,
   "values": [
-    "essencefoundry:shulk_essence",
+    "essencefoundry:shulker_essence",
     "essencefoundry:wandering_trader_essence"
   ]
 }

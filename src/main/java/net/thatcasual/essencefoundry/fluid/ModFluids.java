@@ -9,6 +9,7 @@ import net.minecraft.fluid.FlowableFluid;
 import net.minecraft.item.Item;
 import net.minecraft.item.Items;
 import net.minecraft.text.Text;
+import net.minecraft.util.Formatting;
 import net.minecraft.util.Identifier;
 import net.minecraft.util.registry.Registry;
 import net.thatcasual.essencefoundry.EssenceFoundryMod;
@@ -42,7 +43,7 @@ public class ModFluids {
         STILL_OBSIDIAN_TEARS = registerStillFluid("obsidian_tears");
         FLOWING_OBSIDIAN_TEARS = registerFlowingFluid("flowing_obsidian_tears");
         OBSIDIAN_TEARS_BLOCK = registerFluidBlock("obsidian_tears_block", STILL_OBSIDIAN_TEARS);
-        OBSIDIAN_TEARS_BUCKET = registerBucketItem("obsidian_tears_bucket", STILL_OBSIDIAN_TEARS, new DynamicTooltip(Text.translatable("Extracted from crying obsidian.")));
+        OBSIDIAN_TEARS_BUCKET = registerBucketItem("obsidian_tears_bucket", STILL_OBSIDIAN_TEARS, new DynamicTooltip(Text.translatable("Extracted from crying obsidian.").formatted(Formatting.LIGHT_PURPLE)));
     }
 
 }

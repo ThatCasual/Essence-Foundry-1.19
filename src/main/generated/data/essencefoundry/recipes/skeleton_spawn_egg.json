@@ -2,7 +2,7 @@
   "type": "minecraft:crafting_shaped",
   "key": {
     "E": {
-      "item": "essencefoundry:skeleton_essence"
+      "item": "essencefoundry:salmon_essence"
     },
     "x": {
       "item": "minecraft:egg"

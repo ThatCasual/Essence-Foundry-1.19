@@ -1,14 +1,22 @@
 package net.thatcasual.essencefoundry.item.custom;
 
 import net.fabricmc.fabric.api.item.v1.FabricItemSettings;
+import net.minecraft.client.gui.screen.Screen;
+import net.minecraft.client.item.TooltipContext;
 import net.minecraft.item.Item;
 import net.minecraft.item.ItemGroup;
+import net.minecraft.item.ItemStack;
+import net.minecraft.text.MutableText;
 import net.minecraft.text.Text;
 import net.minecraft.util.Formatting;
+import net.minecraft.world.World;
 import net.thatcasual.essencefoundry.EssenceFoundryMod;
 import net.thatcasual.essencefoundry.item.ModItemGroups;
 import net.thatcasual.essencefoundry.util.DynamicTooltip;
 import net.thatcasual.essencefoundry.util.RegistrationData;
+import org.jetbrains.annotations.Nullable;
+
+import java.util.List;
 
 public class EssenceItem extends Item {
 
@@ -19,6 +27,21 @@ public class EssenceItem extends Item {
         return this.regdata.name;
     }
 
+    @Override
+    public void appendTooltip(ItemStack stack, @Nullable World world, List<Text> tooltip, TooltipContext context) {
+
+        if(Screen.hasShiftDown()){
+            List<MutableText> text = this.regdata.dynamic_tooltip.getEntries();
+            for (int i = 0; i < text.size(); i++){
+                tooltip.add(text.get(i));
+            }
+
+        } else {
+            tooltip.add(Text.translatable("Hold Shift for info.").formatted(Formatting.DARK_PURPLE));
+        }
+
+        super.appendTooltip(stack, world, tooltip, context);
+    }
 
     private EssenceItem(Settings settings, int tier_id, String name, ItemGroup tab, DynamicTooltip dynamic_tooltip) {
         super(settings);
@@ -27,8 +50,6 @@ public class EssenceItem extends Item {
         this.regdata.tab = tab;
         this.regdata.dynamic_tooltip = dynamic_tooltip;
     }
-
-
 
     public static class EssenceItemBuilder{
         private Settings settings;
