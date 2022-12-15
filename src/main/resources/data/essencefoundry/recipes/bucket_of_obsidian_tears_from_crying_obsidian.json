@@ -1,0 +1,11 @@
+{
+  "type": "essencefoundry:extracting",
+  "ingredients": [
+    {
+      "item": "minecraft:crying_obsidian"
+    }
+  ],
+  "output": {
+    "item": "essencefoundry:obsidian_tears_bucket"
+  }
+}

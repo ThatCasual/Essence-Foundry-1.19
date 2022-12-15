@@ -4,9 +4,12 @@ import net.fabricmc.api.ClientModInitializer;
 import net.fabricmc.fabric.api.blockrenderlayer.v1.BlockRenderLayerMap;
 import net.fabricmc.fabric.api.client.render.fluid.v1.FluidRenderHandlerRegistry;
 import net.fabricmc.fabric.api.client.render.fluid.v1.SimpleFluidRenderHandler;
+import net.minecraft.client.gui.screen.ingame.HandledScreens;
 import net.minecraft.client.render.RenderLayer;
 import net.minecraft.util.Identifier;
 import net.thatcasual.essencefoundry.fluid.ModFluids;
+import net.thatcasual.essencefoundry.screen.ExtractorScreen;
+import net.thatcasual.essencefoundry.screen.ModScreenHandlers;
 
 public class EssenceFoundryModClient implements ClientModInitializer {
     @Override
@@ -21,6 +24,8 @@ public class EssenceFoundryModClient implements ClientModInitializer {
 
         BlockRenderLayerMap.INSTANCE.putFluids(RenderLayer.getTranslucent(),
                 ModFluids.STILL_OBSIDIAN_TEARS, ModFluids.FLOWING_OBSIDIAN_TEARS);
+
+        HandledScreens.register(ModScreenHandlers.EXTRACTOR_SCREEN_HANDLER, ExtractorScreen::new);
 
     }
 }

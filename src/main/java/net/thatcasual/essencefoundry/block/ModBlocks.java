@@ -57,6 +57,7 @@ public class ModBlocks extends Block {
     public static LinkedHashMap<String, Block> petaledEssenceBlocks = new LinkedHashMap();
 
     //Links the style prefix with the hashmap so the mod knows where to put each block upon registration.
+    //Underscore is added here at the end of any prefixes so that it will not be present for names without prefixes.
     public static HashMap<String, LinkedHashMap> styleMapAssignments = new HashMap<>(){{
         put("", essenceBlocks);
         put("tiled_", tiledEssenceBlocks);
@@ -96,7 +97,7 @@ public class ModBlocks extends Block {
         //Other blocks.
         name = "extractor";
         ExtractorBlock extractorBlock = new ExtractorBlock.ExtractorBuilder()
-                .name("extractor")
+                .name(name)
                 .dynamicTooltip(new DynamicTooltip(Text.translatable("Used to extract obsidian tears from crying obsidian.").formatted(Formatting.LIGHT_PURPLE)))
                 .build();
         otherBlocks.put(name, registerBlock(extractorBlock, extractorBlock.regdata));
