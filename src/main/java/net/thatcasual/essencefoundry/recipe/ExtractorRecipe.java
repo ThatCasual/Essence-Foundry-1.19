@@ -2,7 +2,6 @@ package net.thatcasual.essencefoundry.recipe;
 
 import com.google.gson.JsonArray;
 import com.google.gson.JsonObject;
-import net.minecraft.inventory.Inventory;
 import net.minecraft.inventory.SimpleInventory;
 import net.minecraft.item.ItemStack;
 import net.minecraft.network.PacketByteBuf;
@@ -29,7 +28,7 @@ public class ExtractorRecipe implements Recipe<SimpleInventory> {
     public boolean matches(SimpleInventory inventory, World world) {
         if (world.isClient) { return false; }
 
-        return recipeItems.get(0).test(inventory.getStack(ExtractorBlockEntity.AMETHYST_SLOT));
+        return recipeItems.get(0).test(inventory.getStack(ExtractorBlockEntity.BUCKET_TO_FILL));
     }
 
     @Override

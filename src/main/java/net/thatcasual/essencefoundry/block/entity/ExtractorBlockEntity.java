@@ -21,31 +21,38 @@ import net.minecraft.util.math.Direction;
 import net.minecraft.world.World;
 import net.thatcasual.essencefoundry.block.custom.ExtractorBlock;
 import net.thatcasual.essencefoundry.fluid.ModFluids;
-import net.thatcasual.essencefoundry.item.ModItems;
 import net.thatcasual.essencefoundry.recipe.ExtractorRecipe;
 import net.thatcasual.essencefoundry.screen.ExtractorScreenHandler;
+import net.thatcasual.essencefoundry.util.ModBlockEntitySideManager;
 import org.jetbrains.annotations.Nullable;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Optional;
 
 public class ExtractorBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory {
 
+    //INVENTORY VARIABLES inventory size constant & constants names to use as slot index numbers.
+    public static final int INVENTORY_SIZE = 3;
+    public static final int BUCKET_TO_EMPTY = 0;
+    public static final int BUCKET_TO_FILL = 1;
+    public static final int CRYING_OBSIDIAN_SLOT = 2;
+    public static final int DRAINED_OBSIDIAN_SLOT = 3;
+
+    //PROPERTY DELEGATE VARIABLES for sync between client and server.
+    protected final PropertyDelegate propertyDelegate;
+
+    //Crafting management variables index names to be used with the PropertyDelegate get and set functions.
     public static final int PROGRESS = 0;
     public static final int MAX_PROGRESS = 1;
 
-    public static final int OBSIDIAN_TEARS_BUCKET = 0;
-    public static final int AMETHYST_SLOT = 1;
-    public static final int OUTPUT_SLOT = 2;
+    //Side manager.
+    public static ModBlockEntitySideManager sideManager;
 
-    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(3, ItemStack.EMPTY);
+    //The block entity's inventory.
+    private final DefaultedList<ItemStack> inventory = DefaultedList.ofSize(INVENTORY_SIZE, ItemStack.EMPTY);
 
-    protected final PropertyDelegate propertyDelegate;
+    //Craft management variables.
     private int progress = 0;
     private int maxProgress = 72;
-    private int fuelTime = 0;
-    private int maxFuelTime = 0;
 
     public ExtractorBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.EXTRACTOR, pos, state);
@@ -72,6 +79,12 @@ public class ExtractorBlockEntity extends BlockEntity implements NamedScreenHand
                 return 2;
             }
         };
+
+        this.sideManager = new ModBlockEntitySideManager(INVENTORY_SIZE);
+        sideManager.registerInsert(ModBlockEntitySideManager.LEFT, BUCKET_TO_EMPTY, ModFluids.OBSIDIAN_TEARS_BUCKET);
+        sideManager.registerInsert(ModBlockEntitySideManager.TOP, BUCKET_TO_FILL, Items.CRYING_OBSIDIAN);
+        sideManager.registerExtract(ModBlockEntitySideManager.BOTTOM, CRYING_OBSIDIAN_SLOT, ModFluids.OBSIDIAN_TEARS_BUCKET);
+
     }
 
     @Override
@@ -133,8 +146,8 @@ public class ExtractorBlockEntity extends BlockEntity implements NamedScreenHand
                 .getFirstMatch(ExtractorRecipe.Type.INSTANCE, inventory, entity.getWorld());
 
         if(hasRecipe(entity)){
-            entity.removeStack(AMETHYST_SLOT,1);
-            entity.setStack(OUTPUT_SLOT, new ItemStack(recipe.get().getOutput().getItem(), entity.getStack(OUTPUT_SLOT).getCount() + 1));
+            entity.removeStack(BUCKET_TO_FILL,1);
+            entity.setStack(CRYING_OBSIDIAN_SLOT, new ItemStack(recipe.get().getOutput().getItem(), entity.getStack(CRYING_OBSIDIAN_SLOT).getCount() + 1));
             entity.resetProgress();
         }
     }
@@ -156,93 +169,25 @@ public class ExtractorBlockEntity extends BlockEntity implements NamedScreenHand
 
     // Checks that the output slot (slot 2) either contains the proper item stack or is empty.
     private static boolean canInsertItemIntoOutputSlot(SimpleInventory inventory, Item output) {
-        return inventory.getStack(OUTPUT_SLOT).getItem() == output
-                || inventory.getStack(OUTPUT_SLOT).isEmpty();
+        return inventory.getStack(CRYING_OBSIDIAN_SLOT).getItem() == output
+                || inventory.getStack(CRYING_OBSIDIAN_SLOT).isEmpty();
     }
 
     // Checks that the amount we are trying to insert into the output slot (slot 2) will not exceed the max stack count of the item.
     private static boolean canInsertAmountIntoOutputSlot(SimpleInventory inventory) {
-        return inventory.getStack(OUTPUT_SLOT).getMaxCount() > inventory.getStack(OUTPUT_SLOT).getCount();
+        return inventory.getStack(CRYING_OBSIDIAN_SLOT).getMaxCount() > inventory.getStack(CRYING_OBSIDIAN_SLOT).getCount();
     }
 
     //SIDED INVENTORY
     @Override
     public boolean canInsert(int slot, ItemStack stack, @Nullable Direction side) {
-        Direction localDirection = this.getWorld().getBlockState(this.pos).get(ExtractorBlock.FACING);
-
-        Direction top = Direction.UP;
-        Direction bottom = Direction.DOWN;
-        Direction front = Direction.NORTH;
-        Direction back = Direction.SOUTH;
-        Direction left = Direction.EAST;
-        Direction right = Direction.WEST;
-
-        switch (localDirection){
-            case SOUTH -> {
-                front = Direction.SOUTH;
-                back = Direction.NORTH;
-                left = Direction.WEST;
-                right = Direction.EAST;
-            }
-            case EAST -> {
-                front = Direction.EAST;
-                back = Direction.WEST;
-                left = Direction.SOUTH;
-                right = Direction.NORTH;
-            }
-            case WEST -> {
-                front = Direction.WEST;
-                back = Direction.EAST;
-                left = Direction.NORTH;
-                right = Direction.SOUTH;
-            }
-        }
-
-        if (side == left && slot == OBSIDIAN_TEARS_BUCKET && stack.getItem() == ModFluids.OBSIDIAN_TEARS_BUCKET
-        || side == top && slot == AMETHYST_SLOT && stack.getItem() == Items.CRYING_OBSIDIAN){
-            return true;
-        } else {
-            return false;
-        }
-
+        Direction facing  = this.getWorld().getBlockState(this.pos).get(ExtractorBlock.FACING);
+        return sideManager.checkIsAllowedInsert(facing, side, slot, stack.getItem());
     }
 
     @Override
     public boolean canExtract(int slot, ItemStack stack, Direction side) {
-        Direction localDirection = this.getWorld().getBlockState(this.pos).get(ExtractorBlock.FACING);
-
-        Direction top = Direction.UP;
-        Direction bottom = Direction.DOWN;
-        Direction front = Direction.NORTH;
-        Direction back = Direction.SOUTH;
-        Direction left = Direction.EAST;
-        Direction right = Direction.WEST;
-
-        switch (localDirection){
-            case SOUTH -> {
-                front = Direction.SOUTH;
-                back = Direction.NORTH;
-                left = Direction.WEST;
-                right = Direction.EAST;
-            }
-            case EAST -> {
-                front = Direction.EAST;
-                back = Direction.WEST;
-                left = Direction.SOUTH;
-                right = Direction.NORTH;
-            }
-            case WEST -> {
-                front = Direction.WEST;
-                back = Direction.EAST;
-                left = Direction.NORTH;
-                right = Direction.SOUTH;
-            }
-        }
-
-        if (side == bottom && slot == OUTPUT_SLOT){
-            return true;
-        } else {
-            return false;
-        }
+        Direction facing  = this.getWorld().getBlockState(this.pos).get(ExtractorBlock.FACING);
+        return sideManager.checkIsAllowedExtract(facing, side, slot, stack.getItem());
     }
 }

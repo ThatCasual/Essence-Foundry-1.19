@@ -23,7 +23,7 @@ public class ExtractorScreenHandler extends ScreenHandler {
 
     public ExtractorScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate delegate) {
         super(ModScreenHandlers.EXTRACTOR_SCREEN_HANDLER, syncId);
-        checkSize(inventory, 3);
+        checkSize(inventory, ExtractorBlockEntity.INVENTORY_SIZE);
         this.inventory = inventory;
         inventory.onOpen(playerInventory.player);
         this.propertyDelegate = delegate;
