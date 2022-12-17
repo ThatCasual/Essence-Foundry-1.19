@@ -13,12 +13,17 @@ import net.thatcasual.essencefoundry.block.entity.ExtractorBlockEntity;
 
 public class ExtractorScreenHandler extends ScreenHandler {
 
+    public static final int PLAYER_INVENTORY_START_X = 8;
+    public static final int PLAYER_INVENTORY_START_Y = 102;
+    private static final int PLAYER_HOTBAR_START_X = 8;
+    private static final int PLAYER_HOTBAR_START_Y = 160;
+    private static final int SLOT_INCREMENT = 18;
     private final Inventory inventory;
     private final PropertyDelegate propertyDelegate;
 
     public ExtractorScreenHandler(int syncId, PlayerInventory playerInventory){
         // SimpleInventory size must match block entity inventory size.
-        this(syncId, playerInventory, new SimpleInventory(3), new ArrayPropertyDelegate(2));
+        this(syncId, playerInventory, new SimpleInventory(ExtractorBlockEntity.INVENTORY_SIZE), new ArrayPropertyDelegate(4));
     }
 
     public ExtractorScreenHandler(int syncId, PlayerInventory playerInventory, Inventory inventory, PropertyDelegate delegate) {
@@ -28,9 +33,12 @@ public class ExtractorScreenHandler extends ScreenHandler {
         inventory.onOpen(playerInventory.player);
         this.propertyDelegate = delegate;
 
-        this.addSlot(new Slot(inventory, 0, 12, 15));
-        this.addSlot(new Slot(inventory, 1, 86, 15));
-        this.addSlot(new Slot(inventory, 2, 86, 60));
+        this.addSlot(new Slot(inventory, ExtractorBlockEntity.BUCKET_TO_EMPTY_SLOT, 39, 24));
+        this.addSlot(new Slot(inventory, ExtractorBlockEntity.EMPTIED_BUCKET_SLOT, 39, 64));
+        this.addSlot(new Slot(inventory, ExtractorBlockEntity.BUCKET_TO_FILL_SLOT, 104, 24));
+        this.addSlot(new Slot(inventory, ExtractorBlockEntity.FILLED_BUCKET_SLOT, 104, 64));
+        this.addSlot(new Slot(inventory, ExtractorBlockEntity.ITEM_FOR_EXTRACTING_SLOT, 128, 24));
+        this.addSlot(new Slot(inventory, ExtractorBlockEntity.EMPTIED_ITEM_SLOT, 128, 64));
 
         addPlayerInventory(playerInventory);
         addPlayerHotbar(playerInventory);
@@ -81,16 +89,16 @@ public class ExtractorScreenHandler extends ScreenHandler {
     }
 
     private void addPlayerInventory(PlayerInventory playerInventory){
-        for (int i = 0; i < 3; ++i){
-            for (int l = 0; l < 9; ++l){
-                this.addSlot(new Slot(playerInventory, l + i * 9 + 9, 8 + l *18, 86 + i * 18));
+        for (int y = 0; y < 3; ++y){
+            for (int x = 0; x < 9; ++x){
+                this.addSlot(new Slot(playerInventory,  x + y * 9 + 9, PLAYER_INVENTORY_START_X + x * SLOT_INCREMENT, PLAYER_INVENTORY_START_Y + y * SLOT_INCREMENT));
             }
         }
     }
 
     private void addPlayerHotbar(PlayerInventory playerInventory){
-        for (int i = 0; i < 9; ++i){
-            this.addSlot(new Slot(playerInventory, i, 8 + i * 18, 144));
+        for (int x = 0; x < 9; ++x){
+            this.addSlot(new Slot(playerInventory, x, PLAYER_HOTBAR_START_X + x * SLOT_INCREMENT, PLAYER_HOTBAR_START_Y));
         }
     }
 }

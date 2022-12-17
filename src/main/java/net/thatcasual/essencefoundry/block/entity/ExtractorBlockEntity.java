@@ -31,11 +31,13 @@ import java.util.Optional;
 public class ExtractorBlockEntity extends BlockEntity implements NamedScreenHandlerFactory, ImplementedInventory {
 
     //INVENTORY VARIABLES inventory size constant & constants names to use as slot index numbers.
-    public static final int INVENTORY_SIZE = 3;
-    public static final int BUCKET_TO_EMPTY = 0;
-    public static final int BUCKET_TO_FILL = 1;
-    public static final int CRYING_OBSIDIAN_SLOT = 2;
-    public static final int DRAINED_OBSIDIAN_SLOT = 3;
+    public static final int INVENTORY_SIZE = 6;
+    public static final int BUCKET_TO_EMPTY_SLOT = 0;
+    public static final int EMPTIED_BUCKET_SLOT = 1;
+    public static final int BUCKET_TO_FILL_SLOT = 2;
+    public static final int FILLED_BUCKET_SLOT = 3;
+    public static final int ITEM_FOR_EXTRACTING_SLOT = 4;
+    public static final int EMPTIED_ITEM_SLOT = 5;
 
     //PROPERTY DELEGATE VARIABLES for sync between client and server.
     protected final PropertyDelegate propertyDelegate;
@@ -43,6 +45,8 @@ public class ExtractorBlockEntity extends BlockEntity implements NamedScreenHand
     //Crafting management variables index names to be used with the PropertyDelegate get and set functions.
     public static final int PROGRESS = 0;
     public static final int MAX_PROGRESS = 1;
+    public static final int FLUID = 2;
+    public static final int MAX_FLUID = 3;
 
     //Side manager.
     public static ModBlockEntitySideManager sideManager;
@@ -53,6 +57,9 @@ public class ExtractorBlockEntity extends BlockEntity implements NamedScreenHand
     //Craft management variables.
     private int progress = 0;
     private int maxProgress = 72;
+    private int fluid = 0;
+
+    private int maxFluid = 64000;
 
     public ExtractorBlockEntity(BlockPos pos, BlockState state) {
         super(ModBlockEntities.EXTRACTOR, pos, state);
@@ -62,6 +69,8 @@ public class ExtractorBlockEntity extends BlockEntity implements NamedScreenHand
                 switch (index){
                     case PROGRESS: return ExtractorBlockEntity.this.progress;
                     case MAX_PROGRESS: return ExtractorBlockEntity.this.maxProgress;
+                    case FLUID: return ExtractorBlockEntity.this.fluid;
+                    case MAX_FLUID: return ExtractorBlockEntity.this.maxFluid;
                     default: return 0;
                 }
             }
@@ -71,19 +80,24 @@ public class ExtractorBlockEntity extends BlockEntity implements NamedScreenHand
                 switch (index){
                     case PROGRESS: ExtractorBlockEntity.this.progress = value; break;
                     case MAX_PROGRESS: ExtractorBlockEntity.this.maxProgress = value; break;
+                    case FLUID: ExtractorBlockEntity.this.fluid = value; break;
+                    case MAX_FLUID: ExtractorBlockEntity.this.maxFluid = value; break;
                 }
             }
 
             @Override
             public int size() {
-                return 2;
+                return 4;
             }
         };
 
         this.sideManager = new ModBlockEntitySideManager(INVENTORY_SIZE);
-        sideManager.registerInsert(ModBlockEntitySideManager.LEFT, BUCKET_TO_EMPTY, ModFluids.OBSIDIAN_TEARS_BUCKET);
-        sideManager.registerInsert(ModBlockEntitySideManager.TOP, BUCKET_TO_FILL, Items.CRYING_OBSIDIAN);
-        sideManager.registerExtract(ModBlockEntitySideManager.BOTTOM, CRYING_OBSIDIAN_SLOT, ModFluids.OBSIDIAN_TEARS_BUCKET);
+        sideManager.registerInsert(ModBlockEntitySideManager.LEFT, BUCKET_TO_EMPTY_SLOT, ModFluids.OBSIDIAN_TEARS_BUCKET);
+        sideManager.registerInsert(ModBlockEntitySideManager.TOP, ITEM_FOR_EXTRACTING_SLOT, Items.CRYING_OBSIDIAN);
+        sideManager.registerInsert(ModBlockEntitySideManager.BACK, BUCKET_TO_FILL_SLOT, Items.BUCKET);
+        sideManager.registerExtract(ModBlockEntitySideManager.BOTTOM, EMPTIED_BUCKET_SLOT, Items.BUCKET);
+        sideManager.registerExtract(ModBlockEntitySideManager.BOTTOM, FILLED_BUCKET_SLOT, ModFluids.OBSIDIAN_TEARS_BUCKET);
+        sideManager.registerExtract(ModBlockEntitySideManager.BOTTOM, EMPTIED_ITEM_SLOT, ModFluids.OBSIDIAN_TEARS_BUCKET);
 
     }
 
@@ -108,6 +122,7 @@ public class ExtractorBlockEntity extends BlockEntity implements NamedScreenHand
         super.writeNbt(nbt);
         Inventories.writeNbt(nbt, inventory);
         nbt.putInt("extractor.progress", progress);
+        nbt.putInt("extractor.fluid", fluid);
     }
 
     @Override
@@ -115,6 +130,7 @@ public class ExtractorBlockEntity extends BlockEntity implements NamedScreenHand
         super.readNbt(nbt);
         Inventories.readNbt(nbt, inventory);
         progress = nbt.getInt("extractor.progress");
+        fluid = nbt.getInt("extractor.fluid");
     }
 
     private void resetProgress(){
@@ -134,49 +150,90 @@ public class ExtractorBlockEntity extends BlockEntity implements NamedScreenHand
             entity.resetProgress();
             markDirty(world, blockPos, state);
         }
+
+        SimpleInventory inventory = constructSimpleInventory(entity);
+        if(hasBucketToEmpty(inventory) && canInsertIntoSlot(inventory, EMPTIED_BUCKET_SLOT, 1, Items.BUCKET)){
+            if (addFluid(1000, entity)) {
+                entity.setStack(BUCKET_TO_EMPTY_SLOT, ItemStack.EMPTY);
+                entity.setStack(EMPTIED_BUCKET_SLOT, new ItemStack(Items.BUCKET, entity.getStack(EMPTIED_BUCKET_SLOT).getCount() + 1));
+                System.out.println(entity.fluid);
+            }
+        }
+        if(hasBucketToFill(inventory) && entity.getStack(FILLED_BUCKET_SLOT).isEmpty()){
+            if (removeFluid(1000, entity)) {
+                entity.setStack(BUCKET_TO_FILL_SLOT, new ItemStack(Items.BUCKET, entity.getStack(BUCKET_TO_FILL_SLOT).getCount() - 1));
+                entity.setStack(FILLED_BUCKET_SLOT, new ItemStack(ModFluids.OBSIDIAN_TEARS_BUCKET, 1));
+                System.out.println(entity.fluid);
+            }
+        }
+
     }
 
-    private static void craftItem(ExtractorBlockEntity entity) {
+    private static boolean addFluid(int amount, ExtractorBlockEntity entity) {
+        if (entity.fluid + amount <= entity.maxFluid){
+            entity.fluid += amount;
+            return true;
+        }
+        return false;
+    }
+    private static boolean removeFluid(int amount, ExtractorBlockEntity entity) {
+        if (entity.fluid - amount >= 0){
+            entity.fluid -= amount;
+            return true;
+        }
+        return false;
+    }
+
+    private static boolean hasBucketToEmpty(SimpleInventory inventory) {
+        return inventory.getStack(BUCKET_TO_EMPTY_SLOT).getItem() == ModFluids.OBSIDIAN_TEARS_BUCKET;
+    }
+    private static boolean hasBucketToFill(SimpleInventory inventory) {
+        return inventory.getStack(BUCKET_TO_FILL_SLOT).getItem() == Items.BUCKET;
+    }
+
+    private static SimpleInventory constructSimpleInventory(ExtractorBlockEntity entity){
         SimpleInventory inventory = new SimpleInventory(entity.size());
         for (int i = 0; i < entity.size(); i++){
             inventory.setStack(i, entity.getStack(i));
         }
+        return inventory;
+    }
+
+    private static void craftItem(ExtractorBlockEntity entity) {
+        SimpleInventory inventory = constructSimpleInventory(entity);
 
         Optional<ExtractorRecipe> recipe = entity.getWorld().getRecipeManager()
                 .getFirstMatch(ExtractorRecipe.Type.INSTANCE, inventory, entity.getWorld());
 
         if(hasRecipe(entity)){
-            entity.removeStack(BUCKET_TO_FILL,1);
-            entity.setStack(CRYING_OBSIDIAN_SLOT, new ItemStack(recipe.get().getOutput().getItem(), entity.getStack(CRYING_OBSIDIAN_SLOT).getCount() + 1));
-            entity.resetProgress();
+            if (addFluid(250, entity)) {
+                entity.removeStack(ITEM_FOR_EXTRACTING_SLOT, 1);
+                entity.setStack(EMPTIED_ITEM_SLOT, new ItemStack(recipe.get().getOutput().getItem(), entity.getStack(EMPTIED_ITEM_SLOT).getCount() + recipe.get().getOutput().getCount()));
+                entity.resetProgress();
+                System.out.println(entity.fluid);
+            }
         }
     }
 
     private static boolean hasRecipe(ExtractorBlockEntity entity) {
-        SimpleInventory inventory = new SimpleInventory(entity.size());
-        for (int i = 0; i < entity.size(); i++){
-            inventory.setStack(i, entity.getStack(i));
-        }
+        SimpleInventory inventory = constructSimpleInventory(entity);
 
         Optional<ExtractorRecipe> match = entity.getWorld().getRecipeManager()
                 .getFirstMatch(ExtractorRecipe.Type.INSTANCE, inventory, entity.getWorld());
 
-        return match.isPresent()
-                && canInsertAmountIntoOutputSlot(inventory)
-                && canInsertItemIntoOutputSlot(inventory, match.get().getOutput().getItem());
+        return match.isPresent() && canInsertIntoSlot(inventory, EMPTIED_ITEM_SLOT, 1, match.get().getOutput().getItem());
 
     }
 
     // Checks that the output slot (slot 2) either contains the proper item stack or is empty.
-    private static boolean canInsertItemIntoOutputSlot(SimpleInventory inventory, Item output) {
-        return inventory.getStack(CRYING_OBSIDIAN_SLOT).getItem() == output
-                || inventory.getStack(CRYING_OBSIDIAN_SLOT).isEmpty();
+    private static boolean canInsertIntoSlot(SimpleInventory inventory, int slot, int count, Item output) {
+        return (inventory.getStack(slot).getItem() == output
+                || inventory.getStack(slot).isEmpty())
+                && inventory.getStack(slot).getMaxCount() >= inventory.getStack(slot).getCount() + count;
     }
 
     // Checks that the amount we are trying to insert into the output slot (slot 2) will not exceed the max stack count of the item.
-    private static boolean canInsertAmountIntoOutputSlot(SimpleInventory inventory) {
-        return inventory.getStack(CRYING_OBSIDIAN_SLOT).getMaxCount() > inventory.getStack(CRYING_OBSIDIAN_SLOT).getCount();
-    }
+
 
     //SIDED INVENTORY
     @Override

@@ -14,6 +14,9 @@ public class ExtractorScreen extends HandledScreen<ExtractorScreenHandler> {
 
     public ExtractorScreen(ExtractorScreenHandler handler, PlayerInventory inventory, Text title) {
         super(handler, inventory, title);
+        this.playerInventoryTitleX = ExtractorScreenHandler.PLAYER_INVENTORY_START_X;
+        this.playerInventoryTitleY = ExtractorScreenHandler.PLAYER_INVENTORY_START_Y-11;
+        this.backgroundHeight = 184;
     }
 
     @Override
@@ -36,7 +39,7 @@ public class ExtractorScreen extends HandledScreen<ExtractorScreenHandler> {
 
     private void renderProgressArrow(MatrixStack matrices, int x, int y){
         if (handler.isCrafting()){
-            drawTexture(matrices, x + 105, y + 33, 176, 0, 8, handler.getScaledProgress());
+            drawTexture(matrices, x + 146, y + 39, 176, 0, 8, handler.getScaledProgress());
         }
     }
 

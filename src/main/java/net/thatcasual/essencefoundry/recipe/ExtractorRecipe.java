@@ -28,7 +28,7 @@ public class ExtractorRecipe implements Recipe<SimpleInventory> {
     public boolean matches(SimpleInventory inventory, World world) {
         if (world.isClient) { return false; }
 
-        return recipeItems.get(0).test(inventory.getStack(ExtractorBlockEntity.BUCKET_TO_FILL));
+        return recipeItems.get(0).test(inventory.getStack(ExtractorBlockEntity.ITEM_FOR_EXTRACTING_SLOT));
     }
 
     @Override
